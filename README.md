@@ -11,7 +11,6 @@ Start backend
 
 ```console
 cd ui/packages/server
-yarn build
 yarn start
 ```
 
