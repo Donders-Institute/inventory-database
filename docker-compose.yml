@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  ui:
+    build:
+      context: ./ui
+    image: ${DOCKER_REGISTRY:-dccn}/inventory-database-ui:${DOCKER_IMAGE_TAG:-latest}
+    env_file:
+        - .env

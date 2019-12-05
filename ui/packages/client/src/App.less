@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.Login {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  background-image: url("./assets/trigon_greyed.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.LoginCard {
+  margin: auto;
+  border-radius: 4px;
+  border-color: #fff;
+  width: 350px;
+  box-shadow: 0px 0px 20px 20px #fff;   
+}
+
+.App-header-top {
+  background: #f45709 url("./assets/gradient-bar-top.png") 0 0 no-repeat;
+  padding: 0px 0px 0px 0px;
+  height: 10px;
+}
+
+.App-header {
+  background: @donders-dark-red;
+  padding: 0px 0px 0px 0px;
+  height: 48px;
+
+  .App-header-menu {
+      background-color: inherit;
+      text-align: center;
+      font-weight: bold;
+  }
+}
+
+.MainCard {
+  border-radius: 4;
+  box-shadow: 1px 1px 1px #ddd;
+  min-height: 730px;
+  height: calc(~"100vh - 80px");
+}
+
+ant-menu-item {
+  padding: 0px 0px 0px 0px;
+}
+
+.ant-menu-submenu {
+  background-color: @donders-dark-red;
+}
+
+
+.fc-right .fc-prev-button,
+.fc-right .fc-next-button {
+  background-color: @donders-dark-red;
+  border: 1px solid @donders-dark-red;
+}
+
+.fc-today-button.fc-button.fc-button-primary {
+  background-color: @donders-dark-red;
+  border: 1px solid @donders-dark-red;
+}
+
+.fc-day.fc-widget-content.fc-today {
+  background-color: #f0f2f5;
+  border-color: #ddd;
+}
+
+.login-form {
+  max-width: 300px;
+}
+.login-form-button {
+  width: 100%;
+}
