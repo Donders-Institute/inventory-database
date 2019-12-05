@@ -185,16 +185,13 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
                                         <img alt="Donders Institute" src={logoDCCN} height={64} />
                                     </div>
                                     <h2 style={{ display: "flex", justifyContent: "center", margin: "0px 0px 10px 0px" }}>
-                                        Research Data Uploader
+                                        Inventory Database
                                     </h2>
-                                    <p>Its purpose is to upload files to the DCCN project storage.
-                                    The source files are files from your computer.
-                                    The destination is the correct folder on the DCCN project storage.</p>
                                     <h1 style={{ display: "flex", justifyContent: "center", margin: "0px 0px 20px 0px" }}>
                                         Please login
                                     </h1>
                                     <div style={{ fontSize: "small", margin: "0px 0px 0px 0px" }}>
-                                        Enter your DCCN credentials
+                                        
                                     </div>
                                     <Form className="login-form" onSubmit={handleSubmit} style={{ margin: "0px 0px 0px 0px" }}>
                                         <Form.Item style={{ margin: "0px 0px 0px 0px" }}>
