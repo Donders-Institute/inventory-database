@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import {
     Card,
     Form,
@@ -14,7 +14,6 @@ import {
 import { FormComponentProps } from "antd/lib/form";
 import { Redirect } from "react-router-dom";
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
-import { fetchIpAddress } from "./fetch";
 
 import { AuthContext } from "../Auth/AuthContext";
 
@@ -38,7 +37,6 @@ function modalError(msg: string) {
 const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
     const authContext = useContext(AuthContext);
 
-    const [isFetchingIpAddress, setIsFetchingIpAddress] = useState(true);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [ipAddress, setIpAddress] = useState("");
@@ -48,16 +46,6 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
 
     const { getFieldDecorator } = form;
     const antIcon = <Icon type="loading" style={{ fontSize: 24, margin: 10 }} spin />;
-
-    useEffect(() => {
-        const fetch = async () => {
-            setIsFetchingIpAddress(true);
-            const newIpAddress = await fetchIpAddress();
-            setIpAddress(ipAddress => newIpAddress);
-            setIsFetchingIpAddress(false);
-        };
-        fetch();
-    }, []);
 
     const handleLoginResponse = (response: AxiosResponse) => {
         if (response.data) {
@@ -175,9 +163,6 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
                     <Content className="Login">
                         <Row type="flex" justify="center" align="middle" style={{ width: "100%" }}>
                             <Col span={2}>
-                                {isFetchingIpAddress &&
-                                    <Spin indicator={antIcon} />
-                                }
                             </Col>
                             <Col span={20}>
                                 <Card className="LoginCard">
