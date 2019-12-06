@@ -10,6 +10,13 @@ const Items: React.FC = () => {
     return (
         <Content style={{ background: "#f0f2f5" }}>
             <Header />
+            <div style={{ padding: 10 }}>
+                <Card
+                    style={{ borderRadius: 4, boxShadow: "1px 1px 1px #ddd", minHeight: "" }}
+                    className="shadow"
+                >
+                </Card>
+            </div>
             <Footer />
         </Content>
     );
