@@ -37,7 +37,7 @@ const Header: React.FC = () => {
     };
 
     const handleLogoutError = (error: AxiosError) => {
-        var errorMessage = "could not connect to data streamer UI server";
+        var errorMessage = "could not connect to inventory database ui server";
         if (error.response) {
             console.log(error.response.data);
             console.log(error.response.status);

@@ -25,8 +25,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 
-const STREAMER_UI_HOST = process.env.STREAMER_UI_HOST || "localhost";
-const STREAMER_UI_PORT = process.env.STREAMER_UI_PORT || 9000;
+const HOST = process.env.HOST || "localhost";
+const PORT = process.env.PORT || 8000;
 
 /* session property
    - rolling expiration upon access
@@ -41,7 +41,7 @@ app.use(session({
     rolling: true,
     saveUninitialized: true,
     unset: 'destroy',
-    name: 'streamer-ui.sid',
+    name: 'inventory-database-ui.sid',
     cookie: {
         httpOnly: false,
         maxAge: 4 * 3600 * 1000
@@ -87,7 +87,7 @@ app.use(function (err, req, res, next) {
     });
 });
 
-app.listen(STREAMER_UI_PORT, STREAMER_UI_HOST);
-console.log(`Running on http://${STREAMER_UI_HOST}:${STREAMER_UI_PORT}`);
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
 
 module.exports = app;

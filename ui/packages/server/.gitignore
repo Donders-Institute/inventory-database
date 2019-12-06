@@ -1,11 +1,3 @@
-# Secrets
-config/streamer-ui-adconfig.json
-config/streamer-ui-config.json
-config/streamer-ui-ldapscert.crt
-
-# Uploaded files
-uploads/
-
 # Logs
 logs
 *.log
