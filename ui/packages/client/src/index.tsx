@@ -14,13 +14,12 @@ const Root: React.FC = () => {
 
     // Set auth context
 
-    const signIn = (username: string, password: string, ipAddress: string) => {
+    const signIn = (username: string, password: string) => {
         setAuthContext(state => (
             {
                 ...state,
                 username: username,
                 password: password,
-                ipAddress: ipAddress,
                 isAuthenticated: true
             }
         ));
@@ -32,7 +31,6 @@ const Root: React.FC = () => {
                 ...state,
                 username: "",
                 password: "",
-                ipAddress: "",
                 isAuthenticated: false
             }
         ));
@@ -41,7 +39,6 @@ const Root: React.FC = () => {
     const [authContext, setAuthContext] = useState({
         username: "",
         password: "",
-        ipAddress: "",
         isAuthenticated: false,
         signIn: signIn,
         signOut: signOut

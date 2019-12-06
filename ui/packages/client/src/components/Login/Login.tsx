@@ -39,7 +39,6 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [ipAddress, setIpAddress] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loggingIn, setLoggingIn] = useState(false);
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -62,13 +61,12 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
             setHasSubmitted(() => false);
             setUsername(() => username);
             setPassword(() => password);
-            setIpAddress(() => ipAddress);
-            authContext!.signIn(username, password, ipAddress);
+            authContext!.signIn(username, password);
         }
     };
 
     const handleLoginError = (error: AxiosError) => {
-        var errorMessage = "could not connect to data streamer UI server";
+        var errorMessage = "could not connect to inventory database ui server";
         if (error.response) {
             console.log(error.response.data);
             console.log(error.response.status);
@@ -138,7 +136,7 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
             {
                 !authContext!.isAuthenticated &&
                 <Button
-                    onClick={() => authContext!.signIn("testuser", "testpassword", "1.2.3.4")}>
+                    onClick={() => authContext!.signIn("testuser", "testpassword")}>
                     Authenticate testuser
                 </Button>
             }
@@ -165,7 +163,7 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
                             <Col span={2}>
                             </Col>
                             <Col span={20}>
-                                <Card className="LoginCard" style={{ marginLeft: "38.7%" }}>
+                                <Card className="LoginCard">
                                     <div style={{ display: "flex", justifyContent: "center", margin: "0px 0px 20px 0px" }}>
                                         <img alt="Donders Institute" src={logoDCCN} height={64} />
                                     </div>
@@ -176,7 +174,7 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
                                         Please login
                                     </h1>
                                     <div style={{ fontSize: "small", margin: "0px 0px 0px 0px" }}>
-                                        
+
                                     </div>
                                     <Form className="login-form" onSubmit={handleSubmit} style={{ margin: "0px 0px 0px 0px" }}>
                                         <Form.Item style={{ margin: "0px 0px 0px 0px" }}>
