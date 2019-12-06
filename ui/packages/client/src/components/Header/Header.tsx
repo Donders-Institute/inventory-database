@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { Layout, Row, Col, Icon, Menu, Button, Modal, Tooltip } from "antd";
+import { NavLink } from "react-router-dom";
+import { Layout, Row, Col, Icon, Menu, Button, Modal } from "antd";
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
 
 import { AuthContext } from "../Auth/AuthContext";
+import { NavContext } from "../Nav/NavContext";
 
 import "../../App.less";
 
@@ -22,17 +23,11 @@ function modalError(msg: string) {
 }
 
 const Header: React.FC = () => {
-    const LOCATION_HOME = "home";
-    const LOCATION_AUTH = "auth";
-
     const authContext = useContext(AuthContext);
+    const userName = authContext!.username;
+    const navContext = useContext(NavContext);
 
     const handleLogoutResponse = (response: AxiosResponse) => {
-        // console.log(response.data);
-        // console.log(response.status);
-        // console.log(response.statusText);
-        // console.log(response.headers);
-        // console.log(response.config);
         authContext!.signOut();
     };
 
@@ -90,9 +85,13 @@ const Header: React.FC = () => {
                                     mode="horizontal"
                                     selectedKeys={[]}
                                 >
-                                    <Menu.Item key={LOCATION_HOME} style={{ float: "left", margin: "0px 0px 0px 0px" }}>
-                                        <Link to="/">
-                                            <img alt="Donders Institute" src={logoDCCN} style={{ height: "20px", marginRight: "10px" }} />INVENTORY DATABASE EXPLORER</Link>
+                                    <Menu.Item key="NAV_HOME" style={{ float: "left" }}>
+                                        <NavLink to="/" onClick={() => {
+                                            navContext!.setKey("NAV_ITEMS");
+                                        }}>
+                                            <img alt="DCCN" src={logoDCCN} style={{ width: "20px", height: "20px", verticalAlign: "middle", marginRight: "10px" }} />
+                                            <span style={{ margin: "0px 10px 0px 0px" }}>INVENTORY DATABASE</span>
+                                        </NavLink>
                                     </Menu.Item>
                                 </Menu>
                             </Col>
@@ -104,18 +103,20 @@ const Header: React.FC = () => {
                                     selectedKeys={[]}
                                 >
                                     <SubMenu
-                                        key="profile"
+                                        key="NAV_PROFILE"
                                         title={
                                             <span>
-                                                <Icon type="user" style={{ marginRight: "4px" }} /><span>{authContext!.username}</span><Icon type="caret-down" style={{ margin: "0px" }} />
+                                                <Icon type="user" style={{ marginRight: "4px" }} />
+                                                <span>{userName}</span>
+                                                <Icon type="caret-down" style={{ margin: "0px" }} />
                                             </span>
                                         }
-                                        style={{ float: "right", margin: "0px 0px 0px 0px" }}
+                                        style={{ float: "right" }}
                                     >
-                                        <Menu.Item key={LOCATION_AUTH}>
-                                            <Button size="small" ghost onClick={handleLogout}>
+                                        <Menu.Item key="NAV_PROFILE_LOGOUT">
+                                            <Button size="small" onClick={handleLogout} style={{ color: "#fff" }}>
                                                 Log out
-                                            </Button>
+                                        </Button>
                                         </Menu.Item>
                                     </SubMenu>
                                 </Menu>

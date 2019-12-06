@@ -1,7 +1,6 @@
 import React from "react";
 import { Layout, Row, Col, Menu } from "antd";
 
-
 import "../../App.less";
 
 import logoDCCN from "../../assets/donders-logo.svg";
@@ -24,7 +23,7 @@ const HeaderLogin: React.FC = () => {
                                     selectedKeys={[]}
                                 >
                                     <Menu.Item key="NAV_HOME" style={{ float: "left", margin: "0px 0px 0px 0px" }}>
-                                        <img alt="Donders Institute" src={logoDCCN} style={{ height: "20px", marginRight: "10px" }} />INVENTORY DATABASE EXPLORER
+                                        <img alt="DCCN" src={logoDCCN} style={{ height: "20px", marginRight: "10px" }} />INVENTORY DATABASE
                                     </Menu.Item>
                                 </Menu>
                             </Col>

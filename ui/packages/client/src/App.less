@@ -15,12 +15,23 @@ body {
   background-size: cover;
 }
 
-.LoginCard {
+.LoginCard.ant-card {
+  background-color: #fff;
   margin: auto;
   border-radius: 4px;
   border-color: #fff;
   width: 350px;
   box-shadow: 0px 0px 20px 20px #fff;   
+}
+
+.NormalCard.ant-card {
+  border-radius: 0px;
+  border: 0px solid #fff;
+  background: transparent;
+}
+
+.NormalLayout {
+  background: #fff
 }
 
 .App-header-top {
@@ -56,26 +67,6 @@ ant-menu-item {
   background-color: @donders-dark-red;
 }
 
-
-.fc-right .fc-prev-button,
-.fc-right .fc-next-button {
-  background-color: @donders-dark-red;
-  border: 1px solid @donders-dark-red;
-}
-
-.fc-today-button.fc-button.fc-button-primary {
-  background-color: @donders-dark-red;
-  border: 1px solid @donders-dark-red;
-}
-
-.fc-day.fc-widget-content.fc-today {
-  background-color: #f0f2f5;
-  border-color: #ddd;
-}
-
-.login-form {
-  max-width: 300px;
-}
-.login-form-button {
-  width: 100%;
+.ant-modal-body {
+  background-color: #fff;
 }

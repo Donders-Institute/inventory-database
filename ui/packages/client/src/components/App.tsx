@@ -3,8 +3,19 @@ import { Switch, Route } from "react-router-dom";
 
 import ProtectedRoute from "./ProtectedRoute";
 
-import Items from "./Items/Items";
 import Login from "./Login/Login";
+
+import Items from "./Items/Items";
+import ItemView from "./ItemView/ItemView";
+import ItemAdd from "./ItemAdd/ItemAdd";
+import ItemEdit from "./ItemEdit/ItemEdit";
+import Categories from "./Categories/Categories";
+import CategoryView from "./CategoryView/CategoryView";
+import CategoryAdd from "./CategoryAdd/CategoryAdd";
+import CategoryEdit from "./CategoryEdit/CategoryEdit";
+import Users from "./Users/Users";
+import UserView from "./UserView/UserView";
+
 import NotFound from "./NotFound/NotFound";
 
 import "../App.less";
@@ -14,6 +25,16 @@ const App: React.FC = () => {
         <Switch>
             <Route path="/login" exact={true} component={Login} />
             <ProtectedRoute path="/" exact={true} component={Items} />
+            <ProtectedRoute path="/items" exact={true} component={Items} />
+            <ProtectedRoute path="/item_add" exact={true} component={ItemAdd} />
+            <ProtectedRoute path="/item_view/:id" exact={true} component={ItemView} />
+            <ProtectedRoute path="/item_edit/:id" exact={true} component={ItemEdit} />
+            <ProtectedRoute path="/categories" exact={true} component={Categories} />
+            <ProtectedRoute path="/category_add" exact={true} component={CategoryAdd} />
+            <ProtectedRoute path="/category_view/:id" exact={true} component={CategoryView} />
+            <ProtectedRoute path="/category_edit/:id" exact={true} component={CategoryEdit} />
+            <ProtectedRoute path="/users" exact={true} component={Users} />
+            <ProtectedRoute path="/user_view/:id" exact={true} component={UserView} />
             <ProtectedRoute component={NotFound} />
         </Switch>
     );
