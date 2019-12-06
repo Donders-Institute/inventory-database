@@ -92,7 +92,7 @@ const Header: React.FC = () => {
                                 >
                                     <Menu.Item key={LOCATION_HOME} style={{ float: "left", margin: "0px 0px 0px 0px" }}>
                                         <Link to="/">
-                                            <img alt="Donders Institute" src={logoDCCN} style={{ height: "20px", marginRight: "10px" }} /></Link>
+                                            <img alt="Donders Institute" src={logoDCCN} style={{ height: "20px", marginRight: "10px" }} />INVENTORY DATABASE EXPLORER</Link>
                                     </Menu.Item>
                                 </Menu>
                             </Col>
