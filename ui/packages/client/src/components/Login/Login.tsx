@@ -165,7 +165,7 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
                             <Col span={2}>
                             </Col>
                             <Col span={20}>
-                                <Card className="LoginCard">
+                                <Card className="LoginCard" style={{ marginLeft: "38.7%" }}>
                                     <div style={{ display: "flex", justifyContent: "center", margin: "0px 0px 20px 0px" }}>
                                         <img alt="Donders Institute" src={logoDCCN} height={64} />
                                     </div>

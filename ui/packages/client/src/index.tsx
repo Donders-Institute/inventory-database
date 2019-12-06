@@ -5,8 +5,8 @@ import * as serviceWorker from "./serviceWorker";
 
 import App from "./components/App";
 import { AuthProvider } from "./components/Auth/AuthContext";
-import { ProjectList, RcFile, ValidateStatuses } from "./components/Uploader/types";
-import { UploaderProvider } from "./components/Uploader/UploaderContext";
+import { ProjectList, RcFile, ValidateStatuses } from "./components/Items/types";
+import { UploaderProvider } from "./components/Items/UploaderContext";
 
 import "./index.less";
 
