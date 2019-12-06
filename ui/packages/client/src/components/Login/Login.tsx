@@ -162,7 +162,7 @@ const LoginForm: React.FC<FormComponentProps> = ({ form }) => {
                         <Row type="flex" justify="center" align="middle" style={{ width: "100%" }}>
                             <Col span={2}>
                             </Col>
-                            <Col span={20}>
+                            <Col span={20} style={{ display: "flex", justifyContent: "center" }}>
                                 <Card className="LoginCard">
                                     <div style={{ display: "flex", justifyContent: "center", margin: "0px 0px 20px 0px" }}>
                                         <img alt="Donders Institute" src={logoDCCN} height={64} />
