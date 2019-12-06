@@ -23,7 +23,6 @@ function modalError(msg: string) {
 
 const Header: React.FC = () => {
     const LOCATION_HOME = "home";
-    const LOCATION_HELP = "help";
     const LOCATION_AUTH = "auth";
 
     const authContext = useContext(AuthContext);
@@ -92,8 +91,8 @@ const Header: React.FC = () => {
                                     selectedKeys={[]}
                                 >
                                     <Menu.Item key={LOCATION_HOME} style={{ float: "left", margin: "0px 0px 0px 0px" }}>
-                                        <Tooltip placement="bottomRight" title="The purpose of the research data uploader is to upload files to the DCCN project storage. The source files are files from your experiments on this computer. The destination is the correct folder on the DCCN project storage."><Link to="/">
-                                            <img alt="Donders Institute" src={logoDCCN} style={{ height: "20px", marginRight: "10px" }} />RESEARCH DATA UPLOADER</Link></Tooltip>
+                                        <Link to="/">
+                                            <img alt="Donders Institute" src={logoDCCN} style={{ height: "20px", marginRight: "10px" }} /></Link>
                                     </Menu.Item>
                                 </Menu>
                             </Col>
@@ -104,9 +103,6 @@ const Header: React.FC = () => {
                                     mode="horizontal"
                                     selectedKeys={[]}
                                 >
-                                    <Menu.Item key={LOCATION_HELP}>
-                                        <Tooltip placement="bottomLeft" title="Click here for help how to use the research data uploader"><Link to="/help"><span style={{ fontWeight: "bold" }}>HELP</span></Link></Tooltip>
-                                    </Menu.Item>
                                     <SubMenu
                                         key="profile"
                                         title={
