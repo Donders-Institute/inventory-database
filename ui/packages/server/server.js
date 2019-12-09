@@ -5,11 +5,12 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const fileUpload = require("express-fileupload");
 
 const routes = require('./routes/index');
 const modAuthentication = require('./routes/mod_authentication');
-const modListProjects = require('./routes/mod_listProjects');
+const modListItems = require('./routes/mod_listItems');
+const modListCategories = require('./routes/mod_listCategories');
+const modListUsers = require('./routes/mod_listUsers');
 
 var app = express();
 
@@ -23,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'frontend')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(fileUpload());
 
 const HOST = process.env.HOST || "localhost";
 const PORT = process.env.PORT || 8000;
@@ -55,8 +55,14 @@ app.use('/', routes);
 app.post('/login', modAuthentication.authenticateUser);
 app.post('/logout', modAuthentication.logoutUser);
 
-// GET Obtain list of projects for user
-app.get('/projects', modAuthentication.isAuthenticated, modListProjects.getListProjects);
+// GET Obtain list of items
+app.get('/items', modAuthentication.isAuthenticated, modListItems.getListItems);
+
+// GET Obtain list of categories
+app.get('/categories', modAuthentication.isAuthenticated, modListCategories.getListCategories);
+
+// GET Obtain list of users
+app.get('/users', modAuthentication.isAuthenticated, modListUsers.getListUsers);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
