@@ -1,4 +1,4 @@
-const USERNAME = process.env.USERNAME || "user";
+const USER = process.env.USER || "user";
 const PASSWORD = process.env.PASSWORD || "password";
 
 var _isAuthenticated = function (req, res, next) {
@@ -37,8 +37,7 @@ var _authenticateUser = async function (req, res) {
     userAgent = req.headers['user-agent'];
 
     if (typeof req.body.username !== 'undefined') {
-
-        if (username === USERNAME && password === PASSWORD) {
+        if (username === USER && password === PASSWORD) {
             req.session.user = username;
             req.session.authenticated = true;
             msg = "You will soon be redirected to the index";

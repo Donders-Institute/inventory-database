@@ -2,7 +2,6 @@ import React from "react";
 import { Layout, Row, Col, BackTop } from "antd";
 
 import Header from "../Header/Header";
-
 const { Content } = Layout;
 
 const UserView: React.FC = () => {
@@ -12,10 +11,8 @@ const UserView: React.FC = () => {
             <Layout className="NormalLayout" style={{ padding: "0px" }}>
                 <Row>
                     <Col span={24}>
-                        <Layout style={{ padding: '0px', marginTop: "20px", marginBottom: "20px" }}>
-                            <Content>
-
-                            </Content>
+                        <Layout style={{ padding: "0px", marginTop: "20px", marginBottom: "20px" }}>
+                            TBW
                         </Layout>
                     </Col>
                 </Row>

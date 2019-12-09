@@ -12,7 +12,7 @@ const CategoryView: React.FC = () => {
             <Layout className="NormalLayout" style={{ padding: "0px" }}>
                 <Row>
                     <Col span={24}>
-                        <Layout style={{ padding: '0px', marginTop: "20px", marginBottom: "20px" }}>
+                        <Layout style={{ padding: "0px", marginTop: "20px", marginBottom: "20px" }}>
                             <Content>
 
                             </Content>

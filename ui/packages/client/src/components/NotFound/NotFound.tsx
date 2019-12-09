@@ -13,7 +13,7 @@ const NotFound: React.FC = () => {
             <Layout className="NormalLayout" style={{ padding: "0px" }}>
                 <Row>
                     <Col span={24}>
-                        <Layout style={{ padding: '0px', marginTop: "20px", marginBottom: "20px" }}>
+                        <Layout style={{ padding: "0px", marginTop: "20px", marginBottom: "20px" }}>
                             <Content>
                                 <Card
                                     style={{ borderRadius: 4, boxShadow: "1px 1px 1px #ddd" }}

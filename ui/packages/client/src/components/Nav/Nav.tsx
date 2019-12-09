@@ -27,7 +27,7 @@ const Nav: React.FC = () => {
                     <Menu
                         mode="inline"
                         selectedKeys={selectedKeys}
-                        style={{ height: '100%' }}
+                        style={{ height: "100%" }}
                     >
                         <Menu.Item key="NAV_ITEMS" className="MenuItem">
                             <NavLink to="/items" onClick={() => { navContext!.setKey("NAV_ITEMS"); }}>
