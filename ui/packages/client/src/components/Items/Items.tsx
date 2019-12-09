@@ -1,5 +1,5 @@
-import React from "react";
-import { Layout, Row, Col, BackTop, Card, Input } from "antd";
+import React, { useState } from "react";
+import { Layout, Row, Col, BackTop, Card, Input, Table } from "antd";
 
 import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
@@ -7,7 +7,40 @@ import Nav from "../Nav/Nav";
 const { Search } = Input;
 const { Content } = Layout;
 
+interface InventoryItem {
+    id: number;
+}
+
 const Items: React.FC = () => {
+
+    const [inventory, setInventory] = useState([] as InventoryItem[]);
+
+    const onChange = (pagination: any, filters: any, sorter: any, extra: any) => {
+        setInventory(extra.currentDataSource);
+    };
+
+    const columns = [
+        {
+            title: "Id",
+            key: "Id",
+            dataIndex: "id" 
+        },
+        {
+            title: "Description",
+            key: "Description",
+            dataIndex: "description"
+        }
+    ]; 
+
+    // const inventory = [
+    //     {
+    //         Id: ""
+    //     },
+    //     {
+    //         Description: ""
+    //     }
+    // ];
+
     return (
         <Content style={{ background: "none" }}>
             <Header />
@@ -32,6 +65,14 @@ const Items: React.FC = () => {
                                         </div>
                                         <div style={{ marginBottom: "20px" }}>
                                             <h2>View items</h2>
+                                        </div>
+                                        <div>
+                                        <Table
+                                                pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
+                                                columns={columns}
+                                                dataSource={inventory}
+                                                size="middle"
+                                                onChange={onChange} />
                                         </div>
                                     </Card>
                                 </div>
