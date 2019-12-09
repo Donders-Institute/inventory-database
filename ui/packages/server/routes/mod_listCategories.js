@@ -31,7 +31,6 @@ var _getListCategories = function (req, res) {
                 return res.status(500).json({ "error": err });
             } else {
                 con.end();
-                console.log(JSON.stringify(results));
                 return res.status(200).json({ "data": results });
             }
         });
