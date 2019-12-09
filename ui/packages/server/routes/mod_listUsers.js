@@ -9,7 +9,7 @@ const PROJECT_DATABASE_DATABASE_NAME = process.env.PROJECT_DATABASE_NAME || "nam
 var _getListUsers = function (req, res) {
 
     // Create SQL statement
-    const sql = `SELECT id, firstName, middleName, lastName FROM users;`
+    const sql = `SELECT id, firstName, middleName, lastName, email FROM users;`
 
     var con = mysql.createConnection({
         host: PROJECT_DATABASE_HOST,

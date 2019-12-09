@@ -12,11 +12,13 @@ export const fetchDummyUserList = async (username: string, password: string) => 
     const userList = [
         {
             userName: "testuser",
-            displayName: "Test User"
+            displayName: "Test User",
+            email: "testuser@mail.com"
         },
         {
             userName: "anothertestuser",
-            displayName: "Another Test User"
+            displayName: "Another Test User",
+            email: "anothertestuser@mail.com"
         }
     ] as unknown as UserList;
     return userList;
@@ -75,6 +77,7 @@ interface SQLQueryUserElement {
     firstName: string;
     middleName: string;
     lastName: string;
+    email: string;
 }
 
 export const fetchUserList = async (username: string, password: string) => {
@@ -87,9 +90,12 @@ export const fetchUserList = async (username: string, password: string) => {
                 const data = result.data.data;
                 for (let i = 0; i < data.length; i++) {
                     const userElement: SQLQueryUserElement = data[i];
-                    const userName = userElement.id;
                     const displayName = [userElement.firstName, userElement.middleName, userElement.lastName].join(" ");
-                    const user = { userName: userName, displayName: displayName } as User;
+                    const user = {
+                        userName: userElement.id,
+                        displayName: displayName,
+                        email: userElement.email
+                    } as User;
                     userList!.push(user);
                 }
             }

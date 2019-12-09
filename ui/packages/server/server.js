@@ -56,13 +56,16 @@ app.post('/login', modAuthentication.authenticateUser);
 app.post('/logout', modAuthentication.logoutUser);
 
 // GET Obtain list of items
-app.get('/items', modAuthentication.isAuthenticated, modListItems.getListItems);
+// app.get('/items', modAuthentication.isAuthenticated, modListItems.getListItems);
+app.get('/items', modListItems.getListItems);
 
 // GET Obtain list of categories
-app.get('/categories', modAuthentication.isAuthenticated, modListCategories.getListCategories);
+// app.get('/categories', modAuthentication.isAuthenticated, modListCategories.getListCategories);
+app.get('/categories', modListCategories.getListCategories);
 
 // GET Obtain list of users
-app.get('/users', modAuthentication.isAuthenticated, modListUsers.getListUsers);
+// app.get('/users', modAuthentication.isAuthenticated, modListUsers.getListUsers);
+app.get('/users', modListUsers.getListUsers);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {

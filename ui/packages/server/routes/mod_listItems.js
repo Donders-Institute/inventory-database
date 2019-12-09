@@ -9,8 +9,7 @@ const PROJECT_DATABASE_DATABASE_NAME = process.env.PROJECT_DATABASE_NAME || "nam
 var _getListItems = function (req, res) {
 
     // Create SQL statement
-    const sql = `SELECT id, serial_number, description, product_type_id, product_number, product_number, primary_user, user_id, room_id, project_code, order_number, supplier, date_of_supply, guarantee_period, date_out_of_guarantee, last_audit, purchase_value, hostname, ram_memory, number_of_cpus, cpu_type, comment, intranet_id, manufacturer FROM items;`
-
+    const sql = `SELECT i.id, i.serial_number, i.description, i.product_type_id, p.description, i.product_number, i.user_id, u.firstName, u.middleName, u.lastName, u.email, i.room_id, r.technical_room_number, i.project_code, i.order_number, i.supplier, i.date_of_supply, i.guarantee_period, i.date_out_of_guarantee, i.last_audit, i.purchase_value, i.hostname, i.ram_memory, i.number_of_cpus, cpu_type, i.comment, i.intranet_id, i.manufacturer FROM items AS i INNER JOIN users AS u ON i.user_id =  u.id INNER JOIN rooms as r ON r.id = i.room_id INNER JOIN product_types AS p ON p.id = i.product_type_id`
     var con = mysql.createConnection({
         host: PROJECT_DATABASE_HOST,
         port: PROJECT_DATABASE_PORT,

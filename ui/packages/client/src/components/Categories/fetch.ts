@@ -11,11 +11,11 @@ export const fetchDummyCategoryList = async (Categoryname: string, password: str
     await timeout(2000);
     const CategoryList = [
         {
-            id: 1,
+            count: 1,
             description: "Product A"
         },
         {
-            id: 2,
+            count: 2,
             description: "Product B"
         }
     ] as unknown as CategoryList;
@@ -71,7 +71,6 @@ function isAxiosResponse(result: AxiosResponse | AxiosError): result is AxiosRes
 }
 
 interface SQLQueryCategoryElement {
-    id: string;
     description: string;
 }
 
@@ -85,9 +84,10 @@ export const fetchCategoryList = async (username: string, password: string) => {
                 const data = result.data.data;
                 for (let i = 0; i < data.length; i++) {
                     const categoryElement: SQLQueryCategoryElement = data[i];
-                    const id = parseInt(categoryElement.id);
-                    const description = categoryElement.description;
-                    const category = { id: id, description: description } as Category;
+                    const category = {
+                        count: i,
+                        description: categoryElement.description
+                    } as Category;
                     categoryList!.push(category);
                 }
             }

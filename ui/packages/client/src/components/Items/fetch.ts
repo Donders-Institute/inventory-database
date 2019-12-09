@@ -9,7 +9,53 @@ export const timeout = (ms: number) => {
 export const fetchDummyItemList = async (Itemname: string, password: string) => {
     console.log("Fetching items ...");
     await timeout(2000);
-    const ItemList = [] as unknown as ItemList;
+    const ItemList = [
+        {
+            count: 1,
+            id: "12345",
+            serialNumber: "010101010",
+            description: "",
+            categoryCount: 1,
+            category: "Product A",
+            userName: "testuser",
+            userEmail: "testuser@mail.com",
+            roomId: "00.010",
+            roomNumber: "00.010",
+            hostName: "hostname",
+            comment: "",
+            dateOutOfGuarantee: "2022-11-11"
+        },
+        {
+            count: 2,
+            id: "23451",
+            serialNumber: "010101010",
+            description: "",
+            categoryCount: 1,
+            category: "Product A",
+            userName: "testuser",
+            userEmail: "testuser@mail.com",
+            roomId: "00.010",
+            roomNumber: "00.010",
+            hostName: "hostname",
+            comment: "",
+            dateOutOfGuarantee: "2022-11-11"
+        },
+        {
+            count: 3,
+            id: "34512",
+            serialNumber: " 010101010",
+            description: "",
+            categoryCount: 2,
+            category: "Product B",
+            userName: "testuser",
+            userEmail: "testuser@mail.com",
+            roomId: "00.010",
+            roomNumber: "00.010",
+            hostName: "hostname",
+            comment: "",
+            dateOutOfGuarantee: "2022-11-11"
+        }
+    ] as unknown as ItemList;
     return ItemList;
 };
 
@@ -63,26 +109,77 @@ function isAxiosResponse(result: AxiosResponse | AxiosError): result is AxiosRes
 
 interface SQLQueryItemElement {
     id: string;
+    serialNumber: string;
     description: string;
+    categoryCount: string;
+    category: string;
+    userName: string;
+    userFirstName: string;
+    userMiddleName: string;
+    userLastName: string;
+    userEmail: string;
+    roomId: string;
+    roomNumber: string;
+    projectCode: string;
+    orderNumber: string;
+    supplier: string;
+    dateOfSupply: string;
+    guaranteePeriodMonths: string;
+    dateOutOfGuarantee: string;
+    purchaseValueEuros: string;
+    hostName: string;
+    rawMemory: string;
+    numberOfCpus: string;
+    cpuType: string;
+    manufacturer: string;
+    intranetId: string;
+    comment: string;
 }
 
 export const fetchItemList = async (username: string, password: string) => {
     console.log("Fetching items ...");
     const result = await handleGetItemsRequest(username, password);
-    let ItemList = [] as unknown as ItemList;
+    let itemList = [] as unknown as ItemList;
     if (isAxiosResponse(result)) {
         if (result.data) {
             if (result.data.data) {
                 const data = result.data.data;
                 for (let i = 0; i < data.length; i++) {
-                    const ItemElement: SQLQueryItemElement = data[i];
-                    const id = parseInt(ItemElement.id);
-                    const description = ItemElement.description;
-                    const Item = { id: id, description: description } as Item;
-                    ItemList!.push(Item);
+                    const itemElement: SQLQueryItemElement = data[i];
+                    const categoryCount = parseInt(itemElement.categoryCount);
+                    const userDisplayName = [itemElement.userFirstName, itemElement.userMiddleName, itemElement.userLastName].join(" ");
+                    const guaranteePeriodMonths = parseInt(itemElement.guaranteePeriodMonths);
+                    const item = {
+                        count: i,
+                        id: itemElement.id,
+                        serialNumber: itemElement.serialNumber,
+                        description: itemElement.description,
+                        categoryCount: categoryCount,
+                        category: itemElement.categoryCount,
+                        userName: itemElement.userName,
+                        userDisplayName: userDisplayName,
+                        userEmail: itemElement.userEmail,
+                        roomId: itemElement.roomId,
+                        roomNumber: itemElement.roomNumber,
+                        projectCode: itemElement.projectCode,
+                        orderNumber: itemElement.orderNumber,
+                        supplier: itemElement.supplier,
+                        dateOfSupply: itemElement.dateOfSupply,
+                        guaranteePeriodMonths: guaranteePeriodMonths,
+                        dateOutOfGuarantee: itemElement.dateOutOfGuarantee,
+                        purchaseValueEuros: itemElement.purchaseValueEuros,
+                        hostName: itemElement.hostName,
+                        rawMemory: itemElement.rawMemory,
+                        numberOfCpus: itemElement.numberOfCpus,
+                        cpuType: itemElement.cpuType,
+                        manufacturer: itemElement.manufacturer,
+                        intranetId: itemElement.intranetId,
+                        comment: itemElement.comment
+                    } as Item;
+                    itemList!.push(item);
                 }
             }
         }
     }
-    return ItemList;
+    return itemList;
 };

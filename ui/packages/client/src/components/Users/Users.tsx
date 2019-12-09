@@ -31,12 +31,12 @@ const Users: React.FC = () => {
             key: "userName",
             dataIndex: "userName",
             sorter: (a: User, b: User) => a.userName.localeCompare(b.userName),
-            width: 150,
-            render: (userName: string) => (
+            render: (userName: string, row: User) => (
                 <span>
-                    <a href={"/user_view/" + userName}>
-                        {userName}
-                    </a>
+                    <a href={"https://intranet.donders.ru.nl/apps/projects/users/view/" + userName}><Icon type="user" /></a>&nbsp;
+                    <a href={"mailto:" + row.email}><Icon type="mail" /></a>&nbsp;
+                    <a href={"/item_view/" + userName}><Icon type="filter" /></a>&nbsp;
+                    {userName}
                 </span>
             )
         },
@@ -45,9 +45,9 @@ const Users: React.FC = () => {
             key: "displayName",
             dataIndex: "displayName",
             sorter: (a: User, b: User) => a.displayName.localeCompare(b.displayName),
-            render: (displayName: string, row: User) => (
+            render: (displayName: string) => (
                 <span>
-                    <a href={"/user/" + row.userName}>{displayName}</a>
+                    {displayName}
                 </span>
             )
         }

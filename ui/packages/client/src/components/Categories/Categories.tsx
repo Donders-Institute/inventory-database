@@ -27,28 +27,26 @@ const Categories: React.FC = () => {
 
     const columns = [
         {
-            title: "Id",
-            key: "id",
-            dataIndex: "id",
-            sorter: (a: Category, b: Category) => a.id - b.id,
-            width: 150,
-            render: (id: string) => (
-                <span>
-                    <a href={"/category_view/" + id}>
-                        {id}
-                    </a>
-                </span>
-            )
-        },
-        {
             title: "Name",
             key: "description",
             dataIndex: "description",
             sorter: (a: Category, b: Category) => a.description.localeCompare(b.description),
             render: (description: string, row: Category) => (
                 <span>
-                    <a href={"/category_view/" + row.id}>{description}</a>
+                    <a href={"/category_view/" + row.count}>{description}</a>
                 </span>
+            )
+        },
+        {
+            title: "Actions",
+            key: "count",
+            width: "10%",
+            render: (count: number) => (
+                <span>
+                    <a href={"/item_edit/" + count}>
+                        <Icon type="edit" />
+                    </a>
+                </span >
             )
         }
     ];
