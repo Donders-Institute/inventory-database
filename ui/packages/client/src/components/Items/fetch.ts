@@ -1,32 +1,23 @@
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
-import { User, UserList } from "../../types/types";
+import { Item, ItemList } from "../../types/types";
 
 export const timeout = (ms: number) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 };
 
 // Fake fetcher for testing purposes
-export const fetchDummyUserList = async (username: string, password: string) => {
-    console.log("Fetching users ...");
+export const fetchDummyItemList = async (Itemname: string, password: string) => {
+    console.log("Fetching items ...");
     await timeout(2000);
-    const userList = [
-        {
-            userName: "testuser",
-            displayName: "Test User"
-        },
-        {
-            userName: "anothertestuser",
-            displayName: "Another Test User"
-        }
-    ] as unknown as UserList;
-    return userList;
+    const ItemList = [] as unknown as ItemList;
+    return ItemList;
 };
 
-const handleGetUsersResponse = (response: AxiosResponse) => {
+const handleGetItemsResponse = (response: AxiosResponse) => {
     return response;
 };
 
-const handleGetUsersError = (error: AxiosError) => {
+const handleGetItemsError = (error: AxiosError) => {
     var errorMessage = "";
     if (error.response) {
         console.log(error.response.data);
@@ -42,10 +33,10 @@ const handleGetUsersError = (error: AxiosError) => {
     return error;
 };
 
-const handleGetUsersRequest = (username: string, password: string) => {
+const handleGetItemsRequest = (username: string, password: string) => {
     return new Promise<AxiosResponse | AxiosError>((resolve) => {
         const config: AxiosRequestConfig = {
-            url: "/users",
+            url: "/items",
             method: "get",
             headers: { "Content-Type": "application/json" },
             data: {
@@ -61,8 +52,8 @@ const handleGetUsersRequest = (username: string, password: string) => {
 
         resolve(
             axios(config)
-                .then(handleGetUsersResponse)
-                .catch(handleGetUsersError));
+                .then(handleGetItemsResponse)
+                .catch(handleGetItemsError));
     });
 };
 
@@ -70,30 +61,28 @@ function isAxiosResponse(result: AxiosResponse | AxiosError): result is AxiosRes
     return (result as AxiosResponse).data !== undefined;
 }
 
-interface SQLQueryUserElement {
+interface SQLQueryItemElement {
     id: string;
-    firstName: string;
-    middleName: string;
-    lastName: string;
+    description: string;
 }
 
-export const fetchUserList = async (username: string, password: string) => {
-    console.log("Fetching users ...");
-    const result = await handleGetUsersRequest(username, password);
-    let userList = [] as unknown as UserList;
+export const fetchItemList = async (username: string, password: string) => {
+    console.log("Fetching items ...");
+    const result = await handleGetItemsRequest(username, password);
+    let ItemList = [] as unknown as ItemList;
     if (isAxiosResponse(result)) {
         if (result.data) {
             if (result.data.data) {
                 const data = result.data.data;
                 for (let i = 0; i < data.length; i++) {
-                    const userElement: SQLQueryUserElement = data[i];
-                    const userName = userElement.id;
-                    const displayName = [userElement.firstName, userElement.middleName, userElement.lastName].join(" ");
-                    const user = { userName: userName, displayName: displayName } as User;
-                    userList!.push(user);
+                    const ItemElement: SQLQueryItemElement = data[i];
+                    const id = parseInt(ItemElement.id);
+                    const description = ItemElement.description;
+                    const Item = { id: id, description: description } as Item;
+                    ItemList!.push(Item);
                 }
             }
         }
     }
-    return userList;
+    return ItemList;
 };
