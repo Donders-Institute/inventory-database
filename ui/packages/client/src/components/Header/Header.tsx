@@ -116,7 +116,7 @@ const Header: React.FC = () => {
                                         <Menu.Item key="NAV_PROFILE_LOGOUT">
                                             <Button size="small" onClick={handleLogout} style={{ color: "#fff" }}>
                                                 Log out
-                                        </Button>
+                                            </Button>
                                         </Menu.Item>
                                     </SubMenu>
                                 </Menu>
