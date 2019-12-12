@@ -50,9 +50,9 @@ const Items: React.FC = () => {
         },
         {
             title: "Serial Number",
-            key: "serialnumber",
-            dataIndex: "Serialnumber",
-            sorter: (a: Item, b: Item) => a.serialnumber.localeCompare(b.serialnumber),
+            key: "serialNumber",
+            dataIndex: "serialnumber",
+            sorter: (a: Item, b: Item) => a.serialNumber.localeCompare(b.serialNumber),
             render: (id: string, row: Item) => (
                 <span>
                     <a href={"/item_view/" + row.count}>{serialnumber}</a>
