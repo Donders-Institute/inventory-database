@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  ui:
+    networks:
+      default:
+      # join the proxynet with hostname alias
+      proxynet:
+        aliases:
+          - inventory-database-ui
+
+networks:
+  default:
+    attachable: true
+  proxynet:
+    external: true
