@@ -21,8 +21,24 @@ const ItemAdd: React.FC = () => {
                                         className="NormalCard"
                                         size="small"
                                     >
-                                        <table>
-                                        </table>
+                                        <tr>
+                                            <td style={{ width: "400px", height: "300px" }}>
+                                                <hr>Required Information</hr>
+                                                <div id="">
+                                                    <label>Inventory ID</label>
+                                                </div>
+                                            </td>
+                                            <td style={{ width: "400px", height: "300px" }}>
+                                            </td>
+                                            <td style={{ width: "400px", height: "300px" }}>
+                                            </td>
+
+                                        </tr>
+                                        {/* <div style={{ marginBottom: "20px" }}>
+                                            <h2>Add item</h2>
+                                            <h1>Required information</h1>
+                                            <Input id="Inventory_ID" style={{ width: "200px" }} placeholder="Inventory ID" />
+                                        </div> */}
                                     </Card>
                                 </div>
                             </Content>

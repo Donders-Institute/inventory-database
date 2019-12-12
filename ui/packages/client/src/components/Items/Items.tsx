@@ -49,6 +49,17 @@ const Items: React.FC = () => {
             )
         },
         {
+            title: "Serial Number",
+            key: "serialnumber",
+            dataIndex: "Serialnumber",
+            sorter: (a: Item, b: Item) => a.serialnumber.localeCompare(b.serialnumber),
+            render: (id: string, row: Item) => (
+                <span>
+                    <a href={"/item_view/" + row.count}>{serialnumber}</a>
+                </span>
+            )
+        },
+        {
             title: "Description",
             key: "description",
             dataIndex: "description",
@@ -99,7 +110,7 @@ const Items: React.FC = () => {
             )
         },
         {
-            title: "Host name",
+            title: "Hostname",
             key: "hostName",
             dataIndex: "hostName",
             sorter: (a: Item, b: Item) => a.hostName.localeCompare(b.hostName),
@@ -154,7 +165,7 @@ const Items: React.FC = () => {
             <Layout className="NormalLayout" style={{ padding: "0px" }}>
                 <Row>
                     <Col span={24}>
-                        <Layout style={{ padding: "0px", background: "#fff", marginTop: "10px", marginBottom: "10px" }}>
+                        <Layout style={{ padding: "0px", background: "#fff", marginTop: "10px", marginBottom: "10px", minHeight: "900px" }}>
                             <Nav />
                             <Content>
                                 <div style={{ padding: "10px 10px 10px 0px" }}>
@@ -176,7 +187,8 @@ const Items: React.FC = () => {
                                                     columns={columns}
                                                     dataSource={itemList!}
                                                     size='middle'
-                                                    style={{ width: "100%" }} />
+                                                    style={{ width: "100%" }}
+                                                />
                                             }
                                         </Content>
                                     </Card>
