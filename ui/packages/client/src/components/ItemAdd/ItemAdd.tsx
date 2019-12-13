@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Row, Col, BackTop, Card } from "antd";
+import { Layout, Row, Col, BackTop, Card, Form, Input } from "antd";
 
 import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
@@ -21,8 +21,28 @@ const ItemAdd: React.FC = () => {
                                         className="NormalCard"
                                         size="small"
                                     >
-                                        <table>
-                                        </table>
+                                        <Form>
+                                            <h1>ADD ITEM</h1>
+                                            <Row gutter={24}>
+                                                <Col span={7}>
+                                                    <h2 style={{ marginBottom: 20 }}>Required Information</h2>
+                                                    <h4>Inventory ID</h4>
+                                                    <Input style={{ width: "80%", marginBottom: 30 }}></Input>
+                                                    <h4>Product Type</h4>
+                                                </Col>
+                                                <Col span={7}>
+                                                    <h2 style={{ marginBottom: 20 }}>Supplier details</h2>
+                                                    <h4>Supplier</h4>
+                                                    <Input style={{ width: "80%", marginBottom: 30 }}></Input>
+                                                </Col>
+                                                <Col span={7}>
+                                                    <h2 style={{ marginBottom: 20 }}>Pricing and Warranty</h2>
+                                                    <h4>Guarantee Period</h4>
+                                                    <Input style={{ width: "80%", marginBottom: 30 }}></Input>
+                                                </Col>
+                                                <Col span={3}></Col>
+                                            </Row>
+                                        </Form>
                                     </Card>
                                 </div>
                             </Content>
