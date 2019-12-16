@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Layout, Row, Col, BackTop, Icon, Spin, Card, Table } from "antd";
+import { Layout, Row, Col, BackTop, Icon, Spin, Card, Table, Input } from "antd";
 
 import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
@@ -175,6 +175,7 @@ const Items: React.FC = () => {
                                     >
                                         <Content>
                                             <h2>View items</h2>
+                                            <Input type={ "search" } className={ "light-table-filter" } data-table={ "table-items" } placeholder={ "Search" } style={{ width: "20%", marginBottom: 20 }}></Input>
                                             {isLoading &&
                                                 <Content>
                                                     <div>Loading ...</div>
@@ -188,6 +189,7 @@ const Items: React.FC = () => {
                                                     dataSource={itemList!}
                                                     size='middle'
                                                     style={{ width: "100%" }}
+                                                    className={"table-items table"}
                                                 />
                                             }
                                         </Content>

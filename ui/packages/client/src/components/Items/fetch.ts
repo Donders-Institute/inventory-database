@@ -54,6 +54,36 @@ export const fetchDummyItemList = async (Itemname: string, password: string) => 
             hostName: "hostname",
             comment: "",
             dateOutOfGuarantee: "2022-11-11"
+        },
+        {
+            count: 4,
+            id: "45123",
+            serialNumber: " 010101010",
+            description: "",
+            categoryCount: 2,
+            category: "Product B",
+            userName: "testuser",
+            userEmail: "testuser@mail.com",
+            roomId: "00.010",
+            roomNumber: "00.010",
+            hostName: "hostname",
+            comment: "",
+            dateOutOfGuarantee: "2022-11-11"
+        },
+        {
+            count: 5,
+            id: "51234",
+            serialNumber: " 010101010",
+            description: "",
+            categoryCount: 2,
+            category: "Product B",
+            userName: "testuser",
+            userEmail: "testuser@mail.com",
+            roomId: "00.010",
+            roomNumber: "00.010",
+            hostName: "hostname",
+            comment: "",
+            dateOutOfGuarantee: "2022-11-11"
         }
     ] as unknown as ItemList;
     return ItemList;
