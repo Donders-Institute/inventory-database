@@ -40,7 +40,7 @@ const Items: React.FC = () => {
             if (itemList) {
                 for (let i = 0; i < itemList.length; i++) {
                     // Search on columns id, serialNumber and category
-                    if (itemList[i].id.includes(searchText) || itemList[i].serialNumber.includes(searchText) || itemList[i].category.includes(searchText)) {
+                    if (itemList[i].id.includes(searchText) || itemList[i].serialNumber.includes(searchText) || itemList[i].category.includes(searchText) || itemList[i].category.includes(searchText)) {
                         newFilteredItemList!.push(itemList[i]);
                     }
                 }
@@ -99,6 +99,15 @@ const Items: React.FC = () => {
             key: "type",
             dataIndex: "type",
             sorter: (a: Item, b: Item) => a.userName.localeCompare(b.userName),
+            filters: [
+                {
+                    text: "LabItems",
+                    value: "labItems"
+                }
+            ],
+            onFilter: (value, record) => record.name.indexOf(value) === 0,
+            sorter: (a, b) => a.name.length - b.name.length,
+            sortDirections: ['descend'],
             render: (type: string) => (
                 <span>
                     {type}
