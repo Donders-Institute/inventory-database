@@ -71,6 +71,17 @@ const Items: React.FC = () => {
             )
         },
         {
+            title: "Type",
+            key: "type",
+            dataIndex: "type",
+            sorter: (a: Item, b: Item) => a.userName.localeCompare(b.userName),
+            render: (type: string) => (
+                <span>
+                    {type}
+                </span>
+            )
+        },
+        {
             title: "Category",
             key: "category",
             dataIndex: "category",
@@ -158,7 +169,7 @@ const Items: React.FC = () => {
             )
         }
     ];
-    
+
     return (
         <Content style={{ background: "none" }}>
             <Header />
