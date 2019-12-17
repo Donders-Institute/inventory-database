@@ -15,6 +15,7 @@ export const fetchDummyItemList = async (Itemname: string, password: string) => 
             id: "12345",
             serialNumber: "010101010",
             description: "",
+            type: "labItems",
             categoryCount: 1,
             category: "Product A",
             userName: "testuser",
@@ -30,6 +31,7 @@ export const fetchDummyItemList = async (Itemname: string, password: string) => 
             id: "23451",
             serialNumber: "010101010",
             description: "",
+            type: "labItems",
             categoryCount: 1,
             category: "Product A",
             userName: "testuser",
@@ -45,6 +47,7 @@ export const fetchDummyItemList = async (Itemname: string, password: string) => 
             id: "34512",
             serialNumber: " 010101010",
             description: "",
+            type: "labItems",
             categoryCount: 2,
             category: "Product B",
             userName: "testuser",
@@ -60,6 +63,7 @@ export const fetchDummyItemList = async (Itemname: string, password: string) => 
             id: "45123",
             serialNumber: " 010101010",
             description: "",
+            type: "borrowItems",
             categoryCount: 2,
             category: "Product B",
             userName: "testuser",
@@ -75,6 +79,7 @@ export const fetchDummyItemList = async (Itemname: string, password: string) => 
             id: "51234",
             serialNumber: " 010101010",
             description: "",
+            type: "borrowItems",
             categoryCount: 2,
             category: "Product B",
             userName: "testuser",
@@ -141,6 +146,7 @@ interface SQLQueryItemElement {
     id: string;
     serialNumber: string;
     description: string;
+    type: string;
     categoryCount: string;
     category: string;
     userName: string;
@@ -184,6 +190,7 @@ export const fetchItemList = async (username: string, password: string) => {
                         id: itemElement.id,
                         serialNumber: itemElement.serialNumber,
                         description: itemElement.description,
+                        type: itemElement.type,
                         categoryCount: categoryCount,
                         category: itemElement.categoryCount,
                         userName: itemElement.userName,
