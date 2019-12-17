@@ -211,7 +211,7 @@ const Items: React.FC = () => {
                                         <Content>
                                             <h2>View items</h2>
                                             <Input
-                                                placeholder="Seach id, serial number, category"
+                                                placeholder="Search id, serial number, category"
                                                 onChange={event => { handleSearch(event); }}
                                                 style={{ width: 400 }}
                                             />
