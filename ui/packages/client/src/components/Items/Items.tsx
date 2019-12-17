@@ -13,17 +13,41 @@ const Items: React.FC = () => {
     const authContext = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
     const [itemList, setItemList] = useState([] as ItemList);
+    const [filteredItemList, setFilteredItemList] = useState([] as ItemList);
+    const [searchText, setSearchText] = useState("");
     const antIcon = <Icon type="loading" style={{ fontSize: 24, margin: 10 }} spin />;
 
     useEffect(() => {
         const fetchData = async (Itemname: string, password: string) => {
             const newItemList = await fetchDummyItemList(Itemname, password);
             setItemList(newItemList);
+            setFilteredItemList(newItemList);
             setIsLoading(false);
             console.log(newItemList);
         };
         fetchData(authContext!.username, authContext!.password);
     }, [authContext]);
+
+    const handleSearch = (event: any) => {
+        setSearchText(event.target.value);
+    };
+
+    useEffect(() => {
+        if (searchText === "") {
+            setFilteredItemList(itemList);
+        } else {
+            const newFilteredItemList = [] as ItemList;
+            if (itemList) {
+                for (let i = 0; i < itemList.length; i++) {
+                    // Search on columns id, serialNumber and category
+                    if (itemList[i].id.includes(searchText) || itemList[i].serialNumber.includes(searchText) || itemList[i].category.includes(searchText)) {
+                        newFilteredItemList!.push(itemList[i]);
+                    }
+                }
+                setFilteredItemList(newFilteredItemList);
+            }
+        }
+    }, [searchText]);
 
     const columns = [
         {
@@ -159,41 +183,6 @@ const Items: React.FC = () => {
         }
     ];
 
-    var TableFilter = (function(Arr) {
- 
-		var _input;
- 
-		function _onInputEvent(e) {
-		_input = e.target;
-		var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-		Arr.forEach.call(tables, function(table) {
-		Arr.forEach.call(table.tBodies, function(tbody) {
-		Arr.forEach.call(tbody.rows, _filter);
-		});
-		});
-		}
- 
-		function _filter(row) {
-		var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-		row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-		}
- 
-		return {
-		init: function() {
-		var inputs = document.getElementsByClassName('light-table-filter');
-		Arr.forEach.call(inputs, function(input) {
-		input.oninput = _onInputEvent;
-		});
-		}
-		};
-	})(Array.prototype);
- 
-	document.addEventListener('readystatechange', function() {
-		if (document.readyState === 'complete') {
-		TableFilter.init();
-		}
-	});
-
     return (
         <Content style={{ background: "none" }}>
             <Header />
@@ -210,7 +199,11 @@ const Items: React.FC = () => {
                                     >
                                         <Content>
                                             <h2>View items</h2>
-                                            <Input type={ "search" } className={ "light-table-filter" } data-table={ "table-items" } placeholder={ "Search" } style={{ width: "20%", marginBottom: 20 }}></Input>
+                                            <Input
+                                                placeholder="Seach id, serial number, category"
+                                                onChange={event => { handleSearch(event); }}
+                                                style={{ width: 400 }}
+                                            />
                                             {isLoading &&
                                                 <Content>
                                                     <div>Loading ...</div>
@@ -221,7 +214,7 @@ const Items: React.FC = () => {
                                                 <Table
                                                     pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
                                                     columns={columns}
-                                                    dataSource={itemList!}
+                                                    dataSource={filteredItemList!}
                                                     size='middle'
                                                     style={{ width: "100%" }}
                                                     className={"table-items table"}
