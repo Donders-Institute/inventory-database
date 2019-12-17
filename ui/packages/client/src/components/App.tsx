@@ -15,6 +15,9 @@ import CategoryAdd from "./CategoryAdd/CategoryAdd";
 import CategoryEdit from "./CategoryEdit/CategoryEdit";
 import Users from "./Users/Users";
 import UserView from "./UserView/UserView";
+import BorrowItemsManage from "./BorrowItemsManage/BorrowItemsManage";
+import LabItemsManage from "./LabItemsManage/LabItemsManage";
+import Report from "./Report/Report";
 
 import NotFound from "./NotFound/NotFound";
 
@@ -35,6 +38,9 @@ const App: React.FC = () => {
             <ProtectedRoute path="/category_edit/:id" exact={true} component={CategoryEdit} />
             <ProtectedRoute path="/users" exact={true} component={Users} />
             <ProtectedRoute path="/user_view/:id" exact={true} component={UserView} />
+            <ProtectedRoute path="/borrow_items_manage" exact={true} component={BorrowItemsManage} />
+            <ProtectedRoute path="/lab_items_manage" exact={true} component={LabItemsManage} />
+            <ProtectedRoute path="/report" exact={true} component={Report} />
             <ProtectedRoute component={NotFound} />
         </Switch>
     );

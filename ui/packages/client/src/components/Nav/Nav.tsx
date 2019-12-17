@@ -54,8 +54,13 @@ const Nav: React.FC = () => {
                                 View users
                             </NavLink>
                         </Menu.Item>
-                        <Menu.Item key="NAV_MANAGE_LAB_ITEMS" className="MenuItem">
-                            <NavLink to="/manage_lab_items" onClick={() => { navContext!.setKey("NAV_MANAGE_LAB_ITEMS"); }}>
+                        <Menu.Item key="NAV_BORROW_ITEMS_MANAGE" className="MenuItem">
+                            <NavLink to="/borrow_items_manage" onClick={() => { navContext!.setKey("NAV_BORROW_ITEMS_MANAGE"); }}>
+                                Manage borrow items
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="NAV_LAB_ITEMS_MANAGE" className="MenuItem">
+                            <NavLink to="/lab_items_manage" onClick={() => { navContext!.setKey("NAV_LAB_ITEMS_MANAGE"); }}>
                                 Manage lab items
                             </NavLink>
                         </Menu.Item>

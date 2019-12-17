@@ -13,7 +13,8 @@ export declare const KeyValues: [
     "NAV_CATEGORY_EDIT",
     "NAV_USERS",
     "NAV_USER_VIEW",
-    "NAV_MANAGE_LAB_ITEMS",
+    "NAV_BORROW_ITEMS_MANAGE",
+    "NAV_LAB_ITEMS_MANAGE",
     "NAV_REPORT",
     "NAV_PROFILE",
     "NAV_PROFILE_LOGOUT"];
