@@ -47,7 +47,7 @@ const Items: React.FC = () => {
                 setFilteredItemList(newFilteredItemList);
             }
         }
-    }, [searchText]);
+    }, [searchText, itemList]);
 
     const columns = [
         {

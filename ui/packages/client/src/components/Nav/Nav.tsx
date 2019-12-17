@@ -34,9 +34,9 @@ const Nav: React.FC = () => {
                                 View items
                             </NavLink>
                         </Menu.Item>
-                        <Menu.Item key="NAV_ITEM_ADD" className="MenuItem">
-                            <NavLink to="/item_add" onClick={() => { navContext!.setKey("NAV_ITEM_ADD"); }}>
-                                Add item
+                        <Menu.Item key="NAV_ITEMS_ADD" className="MenuItem">
+                            <NavLink to="/items_add" onClick={() => { navContext!.setKey("NAV_ITEMS_ADD"); }}>
+                                Add items
                             </NavLink>
                         </Menu.Item>
                         <Menu.Item key="NAV_CATEGORIES" className="MenuItem">
@@ -52,6 +52,16 @@ const Nav: React.FC = () => {
                         <Menu.Item key="NAV_USERS" className="MenuItem">
                             <NavLink to="/users" onClick={() => { navContext!.setKey("NAV_USERS"); }}>
                                 View users
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="NAV_MANAGE_LAB_ITEMS" className="MenuItem">
+                            <NavLink to="/manage_lab_items" onClick={() => { navContext!.setKey("NAV_MANAGE_LAB_ITEMS"); }}>
+                                Manage lab items
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="NAV_REPORT" className="MenuItem">
+                            <NavLink to="/report" onClick={() => { navContext!.setKey("NAV_REPORT"); }}>
+                                Get report
                             </NavLink>
                         </Menu.Item>
                     </Menu>

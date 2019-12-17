@@ -6,7 +6,7 @@ import Nav from "../Nav/Nav";
 
 const { Content } = Layout;
 
-const ItemAdd: React.FC = () => {
+const ItemsAdd: React.FC = () => {
     return (
         <Content style={{ background: "none" }}>
             <Header />
@@ -22,7 +22,7 @@ const ItemAdd: React.FC = () => {
                                         size="small"
                                     >
                                         <Form>
-                                            <h1>ADD ITEM</h1>
+                                            <h1>ADD ITEMS</h1>
                                             <Row gutter={24}>
                                                 <Col span={7}>
                                                     <h2 style={{ marginBottom: 20 }}>Required Information</h2>
@@ -42,7 +42,7 @@ const ItemAdd: React.FC = () => {
                                                 </Col>
                                                 <Col span={3}>
                                                     <Button type="primary" icon="download" size="large" style={{ marginTop: "80%" }}>
-                                                        
+
                                                     </Button>
                                                 </Col>
                                             </Row>
@@ -59,4 +59,4 @@ const ItemAdd: React.FC = () => {
     );
 };
 
-export default ItemAdd;
+export default ItemsAdd;

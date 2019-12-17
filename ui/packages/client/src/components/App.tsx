@@ -7,7 +7,7 @@ import Login from "./Login/Login";
 
 import Items from "./Items/Items";
 import ItemView from "./ItemView/ItemView";
-import ItemAdd from "./ItemAdd/ItemAdd";
+import ItemsAdd from "./ItemsAdd/ItemsAdd";
 import ItemEdit from "./ItemEdit/ItemEdit";
 import Categories from "./Categories/Categories";
 import CategoryView from "./CategoryView/CategoryView";
@@ -26,7 +26,7 @@ const App: React.FC = () => {
             <Route path="/login" exact={true} component={Login} />
             <ProtectedRoute path="/" exact={true} component={Items} />
             <ProtectedRoute path="/items" exact={true} component={Items} />
-            <ProtectedRoute path="/item_add" exact={true} component={ItemAdd} />
+            <ProtectedRoute path="/items_add" exact={true} component={ItemsAdd} />
             <ProtectedRoute path="/item_view/:id" exact={true} component={ItemView} />
             <ProtectedRoute path="/item_edit/:id" exact={true} component={ItemEdit} />
             <ProtectedRoute path="/categories" exact={true} component={Categories} />

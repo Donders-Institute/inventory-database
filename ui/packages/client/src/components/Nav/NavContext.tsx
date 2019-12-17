@@ -4,7 +4,7 @@ import React from "react";
 export declare const KeyValues: [
     "NAV_HOME",
     "NAV_ITEMS",
-    "NAV_ITEM_ADD",
+    "NAV_ITEMS_ADD",
     "NAV_ITEM_VIEW",
     "NAV_ITEM_EDIT",
     "NAV_CATEGORIES",
@@ -13,6 +13,8 @@ export declare const KeyValues: [
     "NAV_CATEGORY_EDIT",
     "NAV_USERS",
     "NAV_USER_VIEW",
+    "NAV_MANAGE_LAB_ITEMS",
+    "NAV_REPORT",
     "NAV_PROFILE",
     "NAV_PROFILE_LOGOUT"];
 
