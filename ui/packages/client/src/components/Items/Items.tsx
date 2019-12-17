@@ -13,17 +13,41 @@ const Items: React.FC = () => {
     const authContext = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
     const [itemList, setItemList] = useState([] as ItemList);
+    const [filteredItemList, setFilteredItemList] = useState([] as ItemList);
+    const [searchText, setSearchText] = useState("");
     const antIcon = <Icon type="loading" style={{ fontSize: 24, margin: 10 }} spin />;
 
     useEffect(() => {
         const fetchData = async (Itemname: string, password: string) => {
             const newItemList = await fetchDummyItemList(Itemname, password);
             setItemList(newItemList);
+            setFilteredItemList(newItemList);
             setIsLoading(false);
             console.log(newItemList);
         };
         fetchData(authContext!.username, authContext!.password);
     }, [authContext]);
+
+    const handleSearch = (event: any) => {
+        setSearchText(event.target.value);
+    };
+
+    useEffect(() => {
+        if (searchText === "") {
+            setFilteredItemList(itemList);
+        } else {
+            const newFilteredItemList = [] as ItemList;
+            if (itemList) {
+                for (let i = 0; i < itemList.length; i++) {
+                    // Search on columns id, serialNumber and category
+                    if (itemList[i].id.includes(searchText) || itemList[i].serialNumber.includes(searchText) || itemList[i].category.includes(searchText)) {
+                        newFilteredItemList!.push(itemList[i]);
+                    }
+                }
+                setFilteredItemList(newFilteredItemList);
+            }
+        }
+    }, [searchText]);
 
     const columns = [
         {
@@ -186,7 +210,11 @@ const Items: React.FC = () => {
                                     >
                                         <Content>
                                             <h2>View items</h2>
-                                            <Input type={ "search" } className={ "light-table-filter" } data-table={ "table-items" } placeholder={ "Search" } style={{ width: "20%", marginBottom: 20 }}></Input>
+                                            <Input
+                                                placeholder="Seach id, serial number, category"
+                                                onChange={event => { handleSearch(event); }}
+                                                style={{ width: 400 }}
+                                            />
                                             {isLoading &&
                                                 <Content>
                                                     <div>Loading ...</div>
@@ -197,7 +225,7 @@ const Items: React.FC = () => {
                                                 <Table
                                                     pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
                                                     columns={columns}
-                                                    dataSource={itemList!}
+                                                    dataSource={filteredItemList!}
                                                     size='middle'
                                                     style={{ width: "100%" }}
                                                     className={"table-items table"}
