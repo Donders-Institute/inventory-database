@@ -70,6 +70,11 @@ pipeline {
                         usernameVariable: 'PROJECT_DATABASE_USER',
                         passwordVariable: 'PROJECT_DATABASE_PASSWORD'
                     ),
+                    usernamePassword (
+                        credentialsId: params.INVENTORY_DATABASE_CREDENTIALS,
+                        usernameVariable: 'USER',
+                        passwordVariable: 'PASSWORD'
+                    ),
                 ]) {
                     // Overwrite the env.sh file to be stored later as an artifact
                     script {
