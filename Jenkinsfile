@@ -103,8 +103,7 @@ pipeline {
                     label: 'Waiting for services to become available',
                     script: 'dockerize \
                         -timeout 120s \
-                        -wait tcp://service:3001 \
-                        -wait http://ui:9000'
+                        -wait http://ui:8000'
                 )
             }
         }
