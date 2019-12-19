@@ -60,7 +60,7 @@ pipeline {
             }
             steps {
 
-                sh 'docker stack rm inventory-database'
+                sh 'docker stack rm inventory-database-ui'
                 
                 sleep(30)
 
@@ -95,7 +95,7 @@ pipeline {
             agent {
                 docker {
                     image 'jwilder/dockerize'
-                    args '--network inventory-database_default'
+                    args '--network inventory-database-ui_default'
                 }
             }
             steps {
