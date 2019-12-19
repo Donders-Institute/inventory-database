@@ -12,8 +12,8 @@ router.get('/', modAuthentication.isAuthenticated, (req, res) => {
 // GET login page
 router.get('/login', (req, res) => {
     // Comment out for testing
-    // req.session.user = 'testuser';
-    // req.session.authenticated = true;
+    req.session.user = 'admin';
+    req.session.authenticated = true;
     res.sendFile(path.join(__dirname + '/../frontend/index.html'));
 });
 

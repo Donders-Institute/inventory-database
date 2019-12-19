@@ -1,8 +1,15 @@
+export enum ItemType {
+    UserItem = "User item",
+    LabItem = "Lab item",
+    BorrowItem = "Borrow item",
+}
+
 export interface Item {
     count: number;
     id: string;
     serialNumber: string;
     description: string;
+    itemType: ItemType;
     categoryCount: number;
     category: string;
     userName: string;

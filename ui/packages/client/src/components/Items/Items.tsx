@@ -4,8 +4,8 @@ import { Layout, Row, Col, BackTop, Icon, Spin, Card, Table, Input } from "antd"
 import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
 import { AuthContext } from "../Auth/AuthContext";
-import { Item, ItemList } from "../../types/types";
-import { fetchDummyItemList } from "./fetch";
+import { Item, ItemType, ItemList } from "../../types/types";
+import { fetchItemList } from "./fetch";
 
 const { Content } = Layout;
 
@@ -19,7 +19,7 @@ const Items: React.FC = () => {
 
     useEffect(() => {
         const fetchData = async (Itemname: string, password: string) => {
-            const newItemList = await fetchDummyItemList(Itemname, password);
+            const newItemList = await fetchItemList(Itemname, password);
             setItemList(newItemList);
             setFilteredItemList(newItemList);
             setIsLoading(false);
@@ -84,33 +84,27 @@ const Items: React.FC = () => {
             )
         },
         {
-            title: "Description",
-            key: "description",
-            dataIndex: "description",
-            sorter: (a: Item, b: Item) => a.description.localeCompare(b.description),
-            render: (description: string) => (
-                <span>
-                    {description}
-                </span>
-            )
-        },
-        {
             title: "Type",
-            key: "type",
-            dataIndex: "type",
-            sorter: (a: Item, b: Item) => a.userName.localeCompare(b.userName),
+            key: "itemType",
+            dataIndex: "itemType",
             filters: [
                 {
-                    text: "LabItems",
-                    value: "labItems"
+                    text: "User item",
+                    value: "User item"
+                },
+                {
+                    text: "Lab item",
+                    value: "Lab item"
+                },
+                {
+                    text: "Borrow item",
+                    value: "Borrow item"
                 }
             ],
-            onFilter: (value, record) => record.name.indexOf(value) === 0,
-            sorter: (a, b) => a.name.length - b.name.length,
-            sortDirections: ['descend'],
-            render: (type: string) => (
+            onFilter: (text: string, row: Item) => row.itemType.indexOf(text) === 0,
+            render: (itemType: ItemType) => (
                 <span>
-                    {type}
+                    {itemType}
                 </span>
             )
         },
@@ -236,6 +230,7 @@ const Items: React.FC = () => {
                                                     columns={columns}
                                                     dataSource={filteredItemList!}
                                                     size='middle'
+                                                    bordered
                                                     style={{ width: "100%" }}
                                                     className={"table-items table"}
                                                 />
