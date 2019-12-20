@@ -25,19 +25,15 @@ const ItemsAdd: React.FC = () => {
                                             <h1>ADD ITEMS</h1>
                                             <Row gutter={24}>
                                                 <Col span={7}>
-                                                    <h2 style={{ marginBottom: 20 }}>Required Information</h2>
-                                                    <h4>Inventory ID</h4>
-                                                    <Input style={{ width: "80%", marginBottom: 20 }}></Input>
-                                                    <h4>Product Type</h4>
-                                                </Col>
-                                                <Col span={7}>
-                                                    <h2 style={{ marginBottom: 20 }}>Supplier details</h2>
-                                                    <h4>Supplier</h4>
+                                                    <h4>ID</h4>
                                                     <Input style={{ width: "80%", marginBottom: 20 }}></Input>
                                                 </Col>
                                                 <Col span={7}>
-                                                    <h2 style={{ marginBottom: 20 }}>Pricing and Warranty</h2>
-                                                    <h4>Guarantee Period</h4>
+                                                    <h4>Serial Number</h4>
+                                                    <Input style={{ width: "80%", marginBottom: 20 }}></Input>
+                                                </Col>
+                                                <Col span={7}>
+                                                    <h4>Type</h4>
                                                     <Input style={{ width: "80%", marginBottom: 20 }}></Input>
                                                 </Col>
                                                 <Col span={3}>
