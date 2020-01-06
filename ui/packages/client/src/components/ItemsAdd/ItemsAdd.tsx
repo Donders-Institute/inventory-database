@@ -23,25 +23,27 @@ const ItemsAdd: React.FC = () => {
                                     >
                                         <Form>
                                             <h1>ADD ITEMS</h1>
-                                            <Row gutter={24}>
-                                                <Col span={6}>
-                                                    <h4 style={{ marginLeft: 10 }}>ID</h4>
-                                                    <Input style={{ width: "90%", marginBottom: 20, marginLeft: "10px" }}></Input>
-                                                </Col>
-                                                <Col span={6}>
-                                                    <h4>Serial Number</h4>
-                                                    <Input style={{ width: "90%", marginBottom: 20 }}></Input>
-                                                </Col>
-                                                <Col span={6}>
-                                                    <h4>Type</h4>
-                                                    <Input style={{ width: "90%", marginBottom: 20 }}></Input>
-                                                </Col>
-                                                <Col span={3}>
-                                                    <Button type="primary" icon="download" size="large" style={{ marginTop: "80%" }}>
-
-                                                    </Button>
-                                                </Col>
-                                            </Row>
+                                            <div className="ad">
+                                                <Row gutter={24}>
+                                                    <Col span={6}>
+                                                        <h4 style={{ marginLeft: 10 }}>ID</h4>
+                                                        <Input style={{ width: "90%", marginBottom: 20, marginLeft: "10px" }}></Input>
+                                                    </Col>
+                                                    <Col span={6}>
+                                                        <h4>Serial Number</h4>
+                                                        <Input style={{ width: "90%", marginBottom: 20 }}></Input>
+                                                    </Col>
+                                                    <Col span={6}>
+                                                        <h4>Type</h4>
+                                                        <Input style={{ width: "90%", marginBottom: 20 }}></Input>
+                                                    </Col>
+                                                    <Col span={3}>
+                                                        <Button type="primary" icon="download" size="large" style={{ marginTop: "80%" }}>
+                                                            
+                                                        </Button>
+                                                    </Col>
+                                                </Row>
+                                            </div>
                                         </Form>
                                     </Card>
                                 </div>
