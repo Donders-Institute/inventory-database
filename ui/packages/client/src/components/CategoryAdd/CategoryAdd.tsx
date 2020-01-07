@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Row, Col, BackTop, Card, Input } from "antd";
+import { Layout, Row, Col, BackTop, Card, Input, Button } from "antd";
 
 import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
@@ -7,6 +7,11 @@ import Nav from "../Nav/Nav";
 const { Content } = Layout;
 
 const CategoryAdd: React.FC = () => {
+
+    const addCategory = (event: any) => {
+        //input added to the database
+    }
+
     return (
         <Content style={{ background: "none" }}>
             <Header />
@@ -25,9 +30,10 @@ const CategoryAdd: React.FC = () => {
                                             <h2>Add category</h2>
                                             <Row gutter={24}>
                                                 <Col span={18}>
-                                                    <Input style={{}}></Input>
+                                                    <Input id="categoryAdd" style={{width:"80%"}}></Input>
                                                 </Col>
                                                 <Col span={6}>
+                                                    <Button type="primary" onClick={event => { addCategory(event); }}>Add</Button>
                                                 </Col>
                                             </Row>
                                         </div>
