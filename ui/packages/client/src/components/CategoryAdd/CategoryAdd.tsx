@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Row, Col, BackTop, Card } from "antd";
+import { Layout, Row, Col, BackTop, Card, Input } from "antd";
 
 import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
@@ -23,7 +23,13 @@ const CategoryAdd: React.FC = () => {
                                     >
                                         <div style={{ marginBottom: "20px" }}>
                                             <h2>Add category</h2>
-                                            TBW
+                                            <Row gutter={24}>
+                                                <Col span={18}>
+                                                    <Input style={{}}></Input>
+                                                </Col>
+                                                <Col span={6}>
+                                                </Col>
+                                            </Row>
                                         </div>
                                     </Card>
                                 </div>

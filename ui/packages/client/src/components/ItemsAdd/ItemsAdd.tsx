@@ -22,7 +22,7 @@ const ItemsAdd: React.FC = () => {
                                         size="small"
                                     >
                                         <Form>
-                                            <h1>ADD ITEMS</h1>
+                                            <h2>Add items</h2>
                                             <div className="ad">
                                                 <Row gutter={24}>
                                                     <Col span={6}>
