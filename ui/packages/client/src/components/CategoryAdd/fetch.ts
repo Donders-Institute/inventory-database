@@ -6,27 +6,17 @@ export const timeout = (ms: number) => {
 };
 
 // Fake fetcher for testing purposes
-export const fetchDummyCategoryList = async (username: string, password: string) => {
-    console.log("Fetching categories ...");
+export const fetchDummyCategoryListCount = async (username: string, password: string) => {
+    console.log("Counting categories ...");
     await timeout(2000);
-    const CategoryList = [
-        {
-            count: 1,
-            description: "Product A"
-        },
-        {
-            count: 2,
-            description: "Product B"
-        }
-    ] as unknown as CategoryList;
-    return CategoryList;
+    return 0;
 };
 
-const handleGetCategoriesResponse = (response: AxiosResponse) => {
+const handleCountCategoriesResponse = (response: AxiosResponse) => {
     return response;
 };
 
-const handleGetCategoriesError = (error: AxiosError) => {
+const handleCountCategoriesError = (error: AxiosError) => {
     var errorMessage = "";
     if (error.response) {
         console.log(error.response.data);
@@ -42,10 +32,10 @@ const handleGetCategoriesError = (error: AxiosError) => {
     return error;
 };
 
-const handleGetCategoriesRequest = (username: string, password: string) => {
+const handleCountCategoriesRequest = (username: string, password: string) => {
     return new Promise<AxiosResponse | AxiosError>((resolve) => {
         const config: AxiosRequestConfig = {
-            url: "/get_categories",
+            url: "/count_categories",
             method: "get",
             headers: { "Content-Type": "application/json" },
             data: {
@@ -61,8 +51,8 @@ const handleGetCategoriesRequest = (username: string, password: string) => {
 
         resolve(
             axios(config)
-                .then(handleGetCategoriesResponse)
-                .catch(handleGetCategoriesError));
+                .then(handleCountCategoriesResponse)
+                .catch(handleCountCategoriesError));
     });
 };
 
@@ -70,28 +60,17 @@ function isAxiosResponse(result: AxiosResponse | AxiosError): result is AxiosRes
     return (result as AxiosResponse).data !== undefined;
 }
 
-interface SQLQueryCategoryElement {
-    description: string;
-}
-
-export const fetchCategoryList = async (username: string, password: string) => {
-    console.log("Fetching categories ...");
-    const result = await handleGetCategoriesRequest(username, password);
-    let categoryList = [] as unknown as CategoryList;
+export const fetchCategoryListCount = async (username: string, password: string) => {
+    console.log("Counting categories ...");
+    const result = await handleCountCategoriesRequest(username, password);
+    let count = 0;
     if (isAxiosResponse(result)) {
         if (result.data) {
             if (result.data.data) {
                 const data = result.data.data;
-                for (let i = 0; i < data.length; i++) {
-                    const categoryElement: SQLQueryCategoryElement = data[i];
-                    const category = {
-                        count: i,
-                        description: categoryElement.description
-                    } as Category;
-                    categoryList!.push(category);
-                }
+                count = data as number;
             }
         }
     }
-    return categoryList;
+    return count;
 };

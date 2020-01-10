@@ -5,28 +5,18 @@ export const timeout = (ms: number) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 };
 
-// Fake fetcher for testing purposes
-export const fetchDummyCategoryList = async (username: string, password: string) => {
-    console.log("Fetching categories ...");
+// Fake poster for testing purposes
+export const postDummyCategoryList = async (username: string, password: string, categoryList: CategoryList) => {
+    console.log("Adding categories ...");
     await timeout(2000);
-    const CategoryList = [
-        {
-            count: 1,
-            description: "Product A"
-        },
-        {
-            count: 2,
-            description: "Product B"
-        }
-    ] as unknown as CategoryList;
-    return CategoryList;
+    return categoryList;
 };
 
-const handleGetCategoriesResponse = (response: AxiosResponse) => {
+const handleAddCategoriesResponse = (response: AxiosResponse) => {
     return response;
 };
 
-const handleGetCategoriesError = (error: AxiosError) => {
+const handleAddCategoriesError = (error: AxiosError) => {
     var errorMessage = "";
     if (error.response) {
         console.log(error.response.data);
@@ -42,13 +32,14 @@ const handleGetCategoriesError = (error: AxiosError) => {
     return error;
 };
 
-const handleGetCategoriesRequest = (username: string, password: string) => {
+const handleAddCategoriesRequest = (username: string, password: string, categoryList: CategoryList) => {
     return new Promise<AxiosResponse | AxiosError>((resolve) => {
         const config: AxiosRequestConfig = {
-            url: "/get_categories",
-            method: "get",
+            url: "/add_categories",
+            method: "post",
             headers: { "Content-Type": "application/json" },
             data: {
+                "categoryList": categoryList
             },
             timeout: 5000,
             withCredentials: true,
@@ -61,8 +52,8 @@ const handleGetCategoriesRequest = (username: string, password: string) => {
 
         resolve(
             axios(config)
-                .then(handleGetCategoriesResponse)
-                .catch(handleGetCategoriesError));
+                .then(handleAddCategoriesResponse)
+                .catch(handleAddCategoriesError));
     });
 };
 
@@ -74,10 +65,10 @@ interface SQLQueryCategoryElement {
     description: string;
 }
 
-export const fetchCategoryList = async (username: string, password: string) => {
-    console.log("Fetching categories ...");
-    const result = await handleGetCategoriesRequest(username, password);
-    let categoryList = [] as unknown as CategoryList;
+export const postCategoryList = async (username: string, password: string, categoryList: CategoryList) => {
+    console.log("Adding categories ...");
+    const result = await handleAddCategoriesRequest(username, password, categoryList);
+    let resultCategoryList = [] as unknown as CategoryList;
     if (isAxiosResponse(result)) {
         if (result.data) {
             if (result.data.data) {
@@ -88,10 +79,10 @@ export const fetchCategoryList = async (username: string, password: string) => {
                         count: i,
                         description: categoryElement.description
                     } as Category;
-                    categoryList!.push(category);
+                    resultCategoryList!.push(category);
                 }
             }
         }
     }
-    return categoryList;
+    return resultCategoryList;
 };

@@ -16,8 +16,8 @@ const Categories: React.FC = () => {
     const antIcon = <Icon type="loading" style={{ fontSize: 24, margin: 10 }} spin />;
 
     useEffect(() => {
-        const fetchData = async (Categoryname: string, password: string) => {
-            const newCategoryList = await fetchDummyCategoryList(Categoryname, password);
+        const fetchData = async (username: string, password: string) => {
+            const newCategoryList = await fetchDummyCategoryList(username, password);
             setCategoryList(newCategoryList);
             setIsLoading(false);
             console.log(newCategoryList);

@@ -8,9 +8,12 @@ const logger = require("morgan");
 
 const routes = require('./routes/index');
 const modAuthentication = require('./routes/mod_authentication');
-const modListItems = require('./routes/mod_listItems');
-const modListCategories = require('./routes/mod_listCategories');
-const modListUsers = require('./routes/mod_listUsers');
+const modGetItems = require('./routes/mod_getItems');
+const modAddItems = require('./routes/mod_addItems');
+const modGetCategories = require('./routes/mod_getCategories');
+const modCountCategories = require('./routes/mod_countCategories');
+const modAddCategories = require('./routes/mod_addCategories');
+const modGetUsers = require('./routes/mod_getUsers');
 
 var app = express();
 
@@ -56,16 +59,22 @@ app.post('/login', modAuthentication.authenticateUser);
 app.post('/logout', modAuthentication.logoutUser);
 
 // GET Obtain list of items
-app.get('/items', modAuthentication.isAuthenticated, modListItems.getListItems);
-// app.get('/items', modListItems.getListItems);
+app.get('/get_items', modAuthentication.isAuthenticated, modGetItems.getItems);
+
+// POST Add a list of items
+app.post('/add_items', modAuthentication.isAuthenticated, modAddItems.addItems);
 
 // GET Obtain list of categories
-app.get('/categories', modAuthentication.isAuthenticated, modListCategories.getListCategories);
-// app.get('/categories', modListCategories.getListCategories);
+app.get('/get_categories', modAuthentication.isAuthenticated, modGetCategories.getCategories);
+
+// GET Count categories
+app.get('/count_categories', modAuthentication.isAuthenticated, modCountCategories.countCategories);
+
+// POST Add a list of categories
+app.post('/add_categories', modAuthentication.isAuthenticated, modAddCategories.addCategories);
 
 // GET Obtain list of users
-app.get('/users', modAuthentication.isAuthenticated, modListUsers.getListUsers);
-// app.get('/users', modListUsers.getListUsers);
+app.get('/get_users', modAuthentication.isAuthenticated, modGetUsers.getUsers);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {

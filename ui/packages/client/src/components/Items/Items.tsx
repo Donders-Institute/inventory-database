@@ -18,8 +18,8 @@ const Items: React.FC = () => {
     const antIcon = <Icon type="loading" style={{ fontSize: 24, margin: 10 }} spin />;
 
     useEffect(() => {
-        const fetchData = async (Itemname: string, password: string) => {
-            const newItemList = await fetchItemList(Itemname, password);
+        const fetchData = async (username: string, password: string) => {
+            const newItemList = await fetchItemList(username, password);
             setItemList(newItemList);
             setFilteredItemList(newItemList);
             setIsLoading(false);

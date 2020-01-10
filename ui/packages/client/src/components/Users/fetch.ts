@@ -47,7 +47,7 @@ const handleGetUsersError = (error: AxiosError) => {
 const handleGetUsersRequest = (username: string, password: string) => {
     return new Promise<AxiosResponse | AxiosError>((resolve) => {
         const config: AxiosRequestConfig = {
-            url: "/users",
+            url: "/get_users",
             method: "get",
             headers: { "Content-Type": "application/json" },
             data: {
