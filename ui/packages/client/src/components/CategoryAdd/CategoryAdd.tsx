@@ -30,7 +30,7 @@ const CategoryAdd: React.FC = () => {
 
     const handleChange = (event: any) => {
         // Store the new category in a list which has only one item
-        const newCategory = { count: count, description: event.target.value } as Category;
+        const newCategory = { count: count + 1, description: event.target.value } as Category;
         const newCategoryList = [newCategory] as CategoryList;
         setCategoryList(categoryList => newCategoryList);
     }

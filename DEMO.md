@@ -2,6 +2,6 @@
 
 ## Inventory Database Explorer
 
-<http://dccn-pl001.dccn.nl:8000>
+<http://dccn-pl001.dccn.nl:8888>
 
 <https://inventory-acc.dccn.nl>

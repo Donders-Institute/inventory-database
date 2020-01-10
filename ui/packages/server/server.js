@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const HOST = process.env.HOST || "localhost";
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8888;
 
 /* session property
    - rolling expiration upon access

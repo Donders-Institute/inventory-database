@@ -8,11 +8,11 @@ services:
       - USER=${USER:-user}
       - PASSWORD=${PASSWORD:-password}
       - HOST=${HOST:-0.0.0.0}
-      - PORT=${PORT:-8000}
+      - PORT=${PORT:-8888}
       - PROJECT_DATABASE_HOST=${PROJECT_DATABASE_HOST:-db.example.com}
       - PROJECT_DATABASE_PORT=${PROJECT_DATABASE_PORT:-3306}
       - PROJECT_DATABASE_USER=${PROJECT_DATABASE_USER:-user}
       - PROJECT_DATABASE_PASSWORD=${PROJECT_DATABASE_PASSWORD:-password}
       - PROJECT_DATABASE_NAME=${PROJECT_DATABASE_NAME:-name}
     ports:
-      - ${PORT:-8000}:${PORT:-8000}
+      - ${PORT:-8888}:${PORT:-8888}
