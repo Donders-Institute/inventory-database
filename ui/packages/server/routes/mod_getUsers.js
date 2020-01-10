@@ -6,7 +6,7 @@ const PROJECT_DATABASE_USER = process.env.PROJECT_DATABASE_USER || "user";
 const PROJECT_DATABASE_PASSWORD = process.env.PROJECT_DATABASE_PASSWORD || "password";
 const PROJECT_DATABASE_DATABASE_NAME = process.env.PROJECT_DATABASE_NAME || "name";
 
-var _getListUsers = function (req, res) {
+var _getUsers = function (req, res) {
 
     // Create SQL statement
     const sql = `SELECT id, firstName, middleName, lastName, email FROM users`;
@@ -37,4 +37,4 @@ var _getListUsers = function (req, res) {
     });
 }
 
-module.exports.getListUsers = _getListUsers;
+module.exports.getUsers = _getUsers;
