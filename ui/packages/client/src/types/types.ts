@@ -49,3 +49,5 @@ export interface User {
 }
 
 export type UserList = User[] | null;
+
+export declare const ValidateStatuses: ["success", "warning", "error", "validating", ""];

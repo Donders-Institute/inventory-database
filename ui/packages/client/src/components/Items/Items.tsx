@@ -21,7 +21,7 @@ const Items: React.FC = () => {
         const fetchData = async (username: string, password: string) => {
             const newItemList = await fetchItemList(username, password);
             setItemList(newItemList);
-            setFilteredItemList(newItemList);
+            setFilteredItemList(itemList => newItemList);
             setIsLoading(false);
             console.log(newItemList);
         };

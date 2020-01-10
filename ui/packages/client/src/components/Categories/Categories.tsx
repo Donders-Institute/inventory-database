@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
 import { AuthContext } from "../Auth/AuthContext";
 import { Category, CategoryList } from "../../types/types";
-import { fetchDummyCategoryList } from "./fetch";
+import { fetchCategoryList } from "./fetch";
 
 const { Content } = Layout;
 
@@ -17,8 +17,8 @@ const Categories: React.FC = () => {
 
     useEffect(() => {
         const fetchData = async (username: string, password: string) => {
-            const newCategoryList = await fetchDummyCategoryList(username, password);
-            setCategoryList(newCategoryList);
+            const newCategoryList = await fetchCategoryList(username, password);
+            setCategoryList(categoryList => newCategoryList);
             setIsLoading(false);
             console.log(newCategoryList);
         };

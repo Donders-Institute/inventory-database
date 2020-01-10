@@ -1,13 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Layout, Row, Col, BackTop, Card, Input, Button, Icon, Spin } from "antd";
+import { Layout, Row, Col, BackTop, Card, Icon, Spin } from "antd";
 
 import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
 
 import { AuthContext } from "../Auth/AuthContext";
-import { Category, CategoryList } from "../../types/types";
+import { Category, CategoryList, ValidateStatuses } from "../../types/types";
+import { validateDescriptionExplanation, validateDescription } from "./utils";
 import { fetchDummyCategoryListCount } from "./fetch";
 import { postDummyCategoryList } from "./post";
+import SubmitForm from "./SubmitForm";
 
 const { Content } = Layout;
 
@@ -15,6 +17,8 @@ const CategoryAdd: React.FC = () => {
     const authContext = useContext(AuthContext);
     const [count, setCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [description, setDescription] = useState("");
+    const [validateDescriptionStatus, setValidateDescriptionStatus] = useState("" as (typeof ValidateStatuses)[number]);
     const [categoryList, setCategoryList] = useState([] as CategoryList);
     const antIcon = <Icon type="loading" style={{ fontSize: 24, margin: 10 }} spin />;
 
@@ -24,18 +28,34 @@ const CategoryAdd: React.FC = () => {
             const newCount = await fetchDummyCategoryListCount(username, password);
             setCount(newCount);
             setIsLoading(false);
+            console.log(`COUNT: ${newCount}`);
         };
         fetchData(authContext!.username, authContext!.password);
     }, [authContext]);
 
     const handleChange = (event: any) => {
-        // Store the new category in a list which has only one item
-        const newCategory = { count: count + 1, description: event.target.value } as Category;
-        const newCategoryList = [newCategory] as CategoryList;
-        setCategoryList(categoryList => newCategoryList);
+        setValidateDescriptionStatus("validating");
+        const isValid = validateDescription(event.target.value);
+        if (isValid) {
+            setValidateDescriptionStatus("success");
+            setDescription(event.target.value);
+
+            // Store the new category in a list which has only one item
+            const newCategory = { count: count + 1, description: event.target.value } as Category;
+            const newCategoryList = [newCategory] as CategoryList;
+            setCategoryList(categoryList => newCategoryList);
+        } else {
+            let value = event.target.value;
+            // Silently reset in case of empty string.
+            if (value !== "") {
+                value = description;
+            }
+            setValidateDescriptionStatus("error");
+            setDescription(value);
+        }
     }
 
-    const addCategory = (event: any) => {
+    const submit = (event: any) => {
         postDummyCategoryList(authContext!.username, authContext!.password, categoryList);
     }
 
@@ -62,18 +82,14 @@ const CategoryAdd: React.FC = () => {
                                                 </Content>
                                             }
                                             {!isLoading &&
-                                                <Row gutter={24}>
-                                                    <Col span={18}>
-                                                        <Input
-                                                            placeholder="Search id, serial number, category"
-                                                            onChange={event => { handleChange(event); }}
-                                                            style={{ width: "80%" }}
-                                                        />
-                                                    </Col>
-                                                    <Col span={6}>
-                                                        <Button type="primary" onClick={event => { addCategory(event); }}>Add</Button>
-                                                    </Col>
-                                                </Row>
+                                                <SubmitForm
+                                                    value={description}
+                                                    validateExplanation={validateDescriptionExplanation}
+                                                    validateStatus={validateDescriptionStatus}
+                                                    validate={validateDescription}
+                                                    handleChange={handleChange}
+                                                    submit={submit}
+                                                />
                                             }
                                         </div>
                                     </Card>
