@@ -75,7 +75,7 @@ const Categories: React.FC = () => {
                                             }
                                             {!isLoading &&
                                                 <Table
-                                                    pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
+                                                    pagination={{ defaultPageSize: 20, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
                                                     columns={columns}
                                                     dataSource={categoryList!}
                                                     size='middle'

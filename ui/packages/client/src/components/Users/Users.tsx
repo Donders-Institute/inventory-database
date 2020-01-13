@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Layout, Row, Col, BackTop, Icon, Spin, Card, Table } from "antd";
+import { Layout, Row, Col, BackTop, Icon, Spin, Card, Table, Input } from "antd";
 
 import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
@@ -53,7 +53,7 @@ const Users: React.FC = () => {
             title: "User name",
             key: "userName",
             dataIndex: "userName",
-            width: 200,
+            width: 150,
             sorter: (a: User, b: User) => a.userName.localeCompare(b.userName),
             render: (userName: string, row: User) => (
                 <span>
@@ -100,12 +100,19 @@ const Users: React.FC = () => {
                                                 </Content>
                                             }
                                             {!isLoading &&
-                                                <Table
-                                                    pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
-                                                    columns={columns}
-                                                    dataSource={filteredUserList!}
-                                                    size='middle'
-                                                    style={{ width: "100%" }} />
+                                                <div>
+                                                    <Input
+                                                        placeholder="Search user name or name"
+                                                        onChange={event => { handleSearch(event); }}
+                                                        style={{ width: 400 }}
+                                                    />
+                                                    <Table
+                                                        pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
+                                                        columns={columns}
+                                                        dataSource={filteredUserList!}
+                                                        size='middle'
+                                                        style={{ width: "100%" }} />
+                                                </div>
                                             }
                                         </Content>
                                     </Card>
