@@ -7,7 +7,7 @@ export const timeout = (ms: number) => {
 
 // Fake fetcher for testing purposes
 export const fetchDummyItemList = async (Itemname: string, password: string) => {
-    console.log("Fetching items ...");
+    console.log("Fetching borrow items ...");
     await timeout(2000);
     const ItemList = [
         {
@@ -166,7 +166,7 @@ interface SQLQueryItemElement {
 }
 
 export const fetchItemList = async (username: string, password: string) => {
-    console.log("Fetching items ...");
+    console.log("Fetching borrow items ...");
     const result = await handleGetItemsRequest(username, password);
     let itemList = [] as unknown as ItemList;
     if (isAxiosResponse(result)) {

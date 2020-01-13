@@ -62,8 +62,6 @@ const _SubmitForm: React.FC<IProps & FormComponentProps> = (
                             />,
                         )}
                     </Form.Item>
-                </Col>
-                <Col span={6}>
                     <Button type="primary" onClick={submit}>Add</Button>
                 </Col>
             </Row>

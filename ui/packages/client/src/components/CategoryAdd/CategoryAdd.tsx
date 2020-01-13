@@ -7,7 +7,7 @@ import Nav from "../Nav/Nav";
 import { AuthContext } from "../Auth/AuthContext";
 import { Category, CategoryList, ValidateStatuses } from "../../types/types";
 import { validateDescriptionExplanation, validateDescription } from "./utils";
-import { fetchDummyCategoryListCount } from "./fetch";
+import { fetchCategoryListCount } from "./fetch";
 import { postDummyCategoryList } from "./post";
 import SubmitForm from "./SubmitForm";
 
@@ -25,7 +25,7 @@ const CategoryAdd: React.FC = () => {
     // Count the number of categories in the database
     useEffect(() => {
         const fetchData = async (username: string, password: string) => {
-            const newCount = await fetchDummyCategoryListCount(username, password);
+            const newCount = await fetchCategoryListCount(username, password);
             setCount(newCount);
             setIsLoading(false);
             console.log(`COUNT: ${newCount}`);

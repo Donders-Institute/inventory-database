@@ -30,6 +30,7 @@ const Users: React.FC = () => {
             title: "User name",
             key: "userName",
             dataIndex: "userName",
+            width: 200,
             sorter: (a: User, b: User) => a.userName.localeCompare(b.userName),
             render: (userName: string, row: User) => (
                 <span>
