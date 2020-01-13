@@ -13,6 +13,8 @@ const Users: React.FC = () => {
     const authContext = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
     const [userList, setUserList] = useState([] as UserList);
+    const [filteredUserList, setFilteredUserList] = useState([] as UserList);
+    const [searchText, setSearchText] = useState("");
     const antIcon = <Icon type="loading" style={{ fontSize: 24, margin: 10 }} spin />;
 
     useEffect(() => {
@@ -24,6 +26,27 @@ const Users: React.FC = () => {
         };
         fetchData(authContext!.username, authContext!.password);
     }, [authContext]);
+
+    useEffect(() => {
+        if (searchText === "") {
+            setFilteredUserList(userList);
+        } else {
+            const newFilteredUserList = [] as UserList;
+            if (userList) {
+                for (let i = 0; i < userList.length; i++) {
+                    // Search on columns userName and displayName
+                    if (userList[i].userName.toLowerCase().includes(searchText) || userList[i].displayName.toLowerCase().includes(searchText)) {
+                        newFilteredUserList!.push(userList[i]);
+                    }
+                }
+                setFilteredUserList(newFilteredUserList);
+            }
+        }
+    }, [searchText, userList]);
+
+    const handleSearch = (event: any) => {
+        setSearchText(event.target.value.toLowerCase());
+    };
 
     const columns = [
         {
@@ -80,7 +103,7 @@ const Users: React.FC = () => {
                                                 <Table
                                                     pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
                                                     columns={columns}
-                                                    dataSource={userList!}
+                                                    dataSource={filteredUserList!}
                                                     size='middle'
                                                     style={{ width: "100%" }} />
                                             }

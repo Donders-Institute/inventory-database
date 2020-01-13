@@ -28,10 +28,6 @@ const Items: React.FC = () => {
         fetchData(authContext!.username, authContext!.password);
     }, [authContext]);
 
-    const handleSearch = (event: any) => {
-        setSearchText(event.target.value);
-    };
-
     useEffect(() => {
         if (searchText === "") {
             setFilteredItemList(itemList);
@@ -40,7 +36,7 @@ const Items: React.FC = () => {
             if (itemList) {
                 for (let i = 0; i < itemList.length; i++) {
                     // Search on columns id, serialNumber and category
-                    if (itemList[i].id.includes(searchText) || itemList[i].serialNumber.includes(searchText) || itemList[i].category.includes(searchText) || itemList[i].category.includes(searchText)) {
+                    if (itemList[i].id.toLowerCase().includes(searchText) || itemList[i].serialNumber.toLowerCase().includes(searchText) || itemList[i].category.toLowerCase().includes(searchText) || itemList[i].category.toLowerCase().includes(searchText)) {
                         newFilteredItemList!.push(itemList[i]);
                     }
                 }
@@ -48,6 +44,10 @@ const Items: React.FC = () => {
             }
         }
     }, [searchText, itemList]);
+
+    const handleSearch = (event: any) => {
+        setSearchText(event.target.value.toLowerCase());
+    };
 
     const columns = [
         {
@@ -213,11 +213,6 @@ const Items: React.FC = () => {
                                     >
                                         <Content>
                                             <h2>View items</h2>
-                                            <Input
-                                                placeholder="Search id, serial number, category"
-                                                onChange={event => { handleSearch(event); }}
-                                                style={{ width: 400 }}
-                                            />
                                             {isLoading &&
                                                 <Content>
                                                     <div>Loading ...</div>
@@ -225,15 +220,22 @@ const Items: React.FC = () => {
                                                 </Content>
                                             }
                                             {!isLoading &&
-                                                <Table
-                                                    pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
-                                                    columns={columns}
-                                                    dataSource={filteredItemList!}
-                                                    size='middle'
-                                                    bordered
-                                                    style={{ width: "100%" }}
-                                                    className={"table-items table"}
-                                                />
+                                                <div>
+                                                    <Input
+                                                        placeholder="Search id, serial number, category"
+                                                        onChange={event => { handleSearch(event); }}
+                                                        style={{ width: 400 }}
+                                                    />
+                                                    <Table
+                                                        pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ["10", "15", "20", "50", "100"] }}
+                                                        columns={columns}
+                                                        dataSource={filteredItemList!}
+                                                        size='middle'
+                                                        bordered
+                                                        style={{ width: "100%" }}
+                                                        className={"table-items table"}
+                                                    />
+                                                </div>
                                             }
                                         </Content>
                                     </Card>
