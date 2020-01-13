@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Form,
     Row,
@@ -31,11 +31,15 @@ const _SubmitForm: React.FC<IProps & FormComponentProps> = (
     }) => {
     const { getFieldDecorator } = form;
 
+    const [proceed, setProceed] = useState(false);
+
     const validateValue = async (rule: any, value: string) => {
+        setProceed(false);
         let isValid = validate(value);
         if (!isValid) {
             throw new Error(validateExplanation);
         }
+        setProceed(true);
     };
 
     return (
@@ -62,7 +66,7 @@ const _SubmitForm: React.FC<IProps & FormComponentProps> = (
                             />,
                         )}
                     </Form.Item>
-                    <Button type="primary" onClick={submit}>Add</Button>
+                    <Button type="primary" disabled={!proceed} onClick={submit}>Add</Button>
                 </Col>
             </Row>
         </Form>
