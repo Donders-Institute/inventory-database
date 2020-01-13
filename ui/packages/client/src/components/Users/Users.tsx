@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Nav from "../Nav/Nav";
 import { AuthContext } from "../Auth/AuthContext";
 import { User, UserList } from "../../types/types";
-import { fetchDummyUserList } from "./fetch";
+import { fetchUserList } from "./fetch";
 
 const { Content } = Layout;
 
@@ -17,7 +17,7 @@ const Users: React.FC = () => {
 
     useEffect(() => {
         const fetchData = async (username: string, password: string) => {
-            const newUserList = await fetchDummyUserList(username, password);
+            const newUserList = await fetchUserList(username, password);
             setUserList(newUserList);
             setIsLoading(false);
             console.log(newUserList);
