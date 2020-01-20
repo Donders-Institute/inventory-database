@@ -26,7 +26,7 @@ const ItemsAdd: React.FC = () => {
                                             <div className="ad">
                                                 <Row gutter={24}>
                                                     <Col span={6}>
-                                                        <h4 style={{ marginLeft: 10 }}>ID</h4>
+                                                        <h4 style={{ marginLeft: 10 }}>Type</h4>
                                                         <Input style={{ width: "90%", marginBottom: 20, marginLeft: "10px" }}></Input>
                                                     </Col>
                                                     <Col span={6}>
@@ -34,11 +34,13 @@ const ItemsAdd: React.FC = () => {
                                                         <Input style={{ width: "90%", marginBottom: 20 }}></Input>
                                                     </Col>
                                                     <Col span={6}>
-                                                        <h4>Type</h4>
-                                                        <Input style={{ width: "90%", marginBottom: 20 }}></Input>
+                                                        <h4></h4>
+                                                        <Button>
+                                                            <a href="">Extra item</a>
+                                                        </Button>
                                                     </Col>
                                                     <Col span={3}>
-                                                        <Button type="primary" icon="download" size="large" style={{ marginTop: "80%" }}>
+                                                        <Button placeholder="Next" icon="download" size="large" style={{ marginTop: "80%" }}>
                                                             
                                                         </Button>
                                                     </Col>
